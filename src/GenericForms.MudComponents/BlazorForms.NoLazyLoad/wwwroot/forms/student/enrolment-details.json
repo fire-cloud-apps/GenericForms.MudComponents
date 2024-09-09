@@ -1,0 +1,50 @@
+﻿[
+  {
+    "FieldName": "FirstName",
+    "Label": "First Name",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "MidName",
+    "Label": "Middle Name",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+  
+  {
+    "FieldName": "LastName",
+    "Label": "Last Name",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  }
+  
+]

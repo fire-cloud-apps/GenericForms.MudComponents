@@ -1,0 +1,42 @@
+﻿
+@page "/authentication/login"
+
+<MudBreadcrumbs Items="_items"></MudBreadcrumbs>
+
+@code {
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Authentication", href: "/",
+            icon: Icons.Material.Outlined.Security),
+
+        new BreadcrumbItem("Login Form",
+            icon:Icons.Material.Outlined.Login, disabled:false,
+            href:  "/authentication/login"),
+    };
+}
+
+
+<Blazor.UI.LoginForms.Login RegisterLink="/register"
+                            LogoAlign="AlignItems.End"
+                            LogoIcon="@Icons.Material.Rounded.Login"
+                            TextGradient="gradient-text"
+                            ForgetPasswordLink="#"
+                            Auth="@_authDetails"
+                            OnClick="EventInvoke">
+
+
+</Blazor.UI.LoginForms.Login>
+
+
+@code{
+    Blazor.UI.LoginForms.Model.AuthDetails _authDetails;
+
+    public void EventInvoke(Blazor.UI.LoginForms.Model.AuthDetails auth)
+    {
+        Console.WriteLine($"Parent Event Invoked: Email: {auth.Email} Password: {auth.Password}");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        _authDetails = new Blazor.UI.LoginForms.Model.AuthDetails();
+    }
+}

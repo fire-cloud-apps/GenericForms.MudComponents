@@ -1,0 +1,28 @@
+﻿@page "/authentication/social-network"
+
+<MudBreadcrumbs Items="_items"></MudBreadcrumbs>
+
+@code {
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("Authentication", href: "/", 
+            icon: Icons.Material.Outlined.Security),
+
+        new BreadcrumbItem("Social Network", 
+            icon:Icons.Material.Outlined.SocialDistance, disabled:false,
+            href:  "/authentication/social-network"),
+    };
+}
+
+<MudPaper Class="ma-3 pa-3" Outlined="true">
+
+    <MudText Class="ml-4" Typo="Typo.h5">Social Network Component</MudText>
+
+    <SocialNetworkLogin FacebookLink="https://facebook.fc/login" GoogleLink="Google" MicrosoftLink="Microsoft" TwitterLink="Twitter" />
+
+</MudPaper>
+
+
+@code {
+
+}

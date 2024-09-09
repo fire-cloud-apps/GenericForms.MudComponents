@@ -1,0 +1,58 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode="true" Theme="MyCustomTheme" />
+@* <MudThemeProvider IsDarkMode="false" /> *@
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
+
+
+@code {
+    //Ref
+    // https://mudblazor.com/features/colors#material-colors-list-of-material-colors
+    // https://mudblazor.com/customization/overview#variables
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            PaletteLight = new PaletteLight()
+            {
+                Primary = Colors.Teal.Default,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Teal.Lighten1,
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = Colors.Teal.Default,
+                Secondary = Colors.Green.Accent4,
+                AppbarBackground = Colors.Teal.Darken4,
+            },
+
+            // LayoutProperties = new LayoutProperties()
+            // {
+            //     DrawerWidthLeft = "260px",
+            //     DrawerWidthRight = "300px"
+            // }
+        };
+}

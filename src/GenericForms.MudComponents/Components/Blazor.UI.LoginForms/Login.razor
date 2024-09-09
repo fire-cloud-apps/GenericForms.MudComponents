@@ -1,0 +1,45 @@
+﻿@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Small" 
+Class="d-flex align-center" Style="height: 100vh;">
+    <div class="d-flex flex-column mud-width-full">
+        <MudPaper Elevation="25" Class="pa-8" Width="100%" MaxWidth="500px">
+
+            @if (!string.IsNullOrEmpty(LogoIcon))
+            {
+                <MudStack AlignItems="@LogoAlign" Row="true">
+                    <MudText Class="@TextGradient"
+                             Typo="Typo.h3"> Fire Cloud </MudText>
+
+                    <MudIcon Icon="@LogoIcon" Size="Size.Large"
+                             Style="width:100px; height:100px;" />
+                </MudStack>
+            }
+
+            <MudText Typo="Typo.h4" GutterBottom="true">Sign In</MudText>
+
+            @if (!string.IsNullOrEmpty(RegisterLink))
+            {
+                <MudText>
+                    Don't have an account?
+                    <MudLink Href="@RegisterLink">Sign Up</MudLink>
+                </MudText>
+            }
+            <MudTextField T="string" Value="@Auth.Email" Label="E-mail" Variant="Variant.Outlined" Class="my-6"></MudTextField>
+
+            <MudTextField @bind-Value="@Auth.Password" Label="Password" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
+
+            <div Class="d-flex justify-space-between align-center">
+                <MudCheckBox T="bool" Value="@Auth.Remember" Label="Remember me?" Color="Color.Primary" Class="ml-n1 my-3"></MudCheckBox>
+                @if (!string.IsNullOrEmpty(ForgetPasswordLink))
+                {
+                    <MudLink Href="@ForgetPasswordLink">Forgot pwd?</MudLink>
+                }
+            </div>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                       OnClick="@((e)=> HandleClickAsync(e, Auth))"
+                       Size="Size.Large" FullWidth="true">Sign In</MudButton>
+        </MudPaper>
+    </div>
+</MudContainer>

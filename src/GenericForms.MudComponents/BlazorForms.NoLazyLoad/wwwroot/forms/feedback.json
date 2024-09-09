@@ -1,0 +1,86 @@
+﻿[
+  {
+    "FieldName": "Name",
+    "Label": "Full Name",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6
+    },
+    "Validation": {
+      "IsRequired": true,
+      "RequiredError": "Name is Required."
+    }
+  },
+  
+  {
+    "FieldName": "Email",
+    "Label": "Email",
+    "InputType": "Email",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6
+    },
+    "Validation": {
+      "IsRequired": true,
+      "RequiredError": "Name is Required."
+    }
+  },
+
+  {
+    "FieldName": "Divider",
+    "Label": "Leave a Message",
+    "TextStyle": "h6",
+    "InputType": "Title",
+    "TileAlign": "justify-center",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    }
+  },
+  {
+    "FieldName": "Message",
+    "Label": "Leave a Message",
+    "InputType": "MultiLine",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "Enter some message, what which we receive.",
+    "Variant": "Text",
+    "Line": 5,
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    }
+  },
+  {
+    "FieldName": "Alert",
+    "Label": "Register yourself and provide your feedback. It is valuble for us.",
+    "InputType": "Alert",
+    "TileAlign": "justify-end",
+    "Severity": "Normal",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    }
+  }
+]

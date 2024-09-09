@@ -1,0 +1,70 @@
+﻿@using MudBlazor
+
+
+<MudPaper Outlined="false" Elevation="4" Class="ma-2 pa-2">
+    <MudStack Spacing="2">
+        <MudAlert Severity="Severity.Info" Class=" mud-width-full">
+            To sign in, please select any social network platform of your choice.
+        </MudAlert>
+        <MudDivider />
+
+        @if (!string.IsNullOrEmpty(GoogleLink))
+        {
+            <MudAlert NoIcon="true" Severity="Severity.Success" Class="mud-width-full">
+                <MudStack Row="true">
+                <MudIcon Color="Color.Default" Icon="@Icons.Custom.Brands.Google" />
+                <MudLink Color="Color.Default" Href="@GoogleLink"> Use Google Sign-in</MudLink>
+            </MudStack>
+        </MudAlert>
+        }
+
+        @if (!string.IsNullOrEmpty(MicrosoftLink))
+        {
+            <MudAlert NoIcon="true" Severity="Severity.Success" Class=" mud-width-full">
+                <MudStack Row="true">
+                <MudIcon Color="Color.Default" Icon="@Icons.Custom.Brands.Microsoft" />
+                <MudLink Color="Color.Default" Href="@MicrosoftLink"> Use Microsoft Sign-in</MudLink>
+            </MudStack>
+        </MudAlert>
+        }
+
+        @if (!string.IsNullOrEmpty(FacebookLink))
+        {
+            <MudAlert NoIcon="true" Severity="Severity.Success" Class=" mud-width-full">
+                    <MudStack Row="true">
+                    <MudIcon Color="Color.Default" Icon="@Icons.Custom.Brands.Facebook" />
+                    <MudLink Color="Color.Default" Href="@FacebookLink"> Use Facebook Sign-in</MudLink>
+                </MudStack>
+            </MudAlert>
+        }
+
+        @if (!string.IsNullOrEmpty(TwitterLink))
+        {
+            <MudAlert NoIcon="true" Severity="Severity.Success" Class=" mud-width-full">
+                <MudStack Row="true">
+                    <MudIcon Color="Color.Default" Icon="@Icons.Custom.Brands.Twitter" />
+                    <MudLink Color="Color.Default" Href="@TwitterLink"> Use Twitter Sign-in</MudLink>
+                </MudStack>
+            </MudAlert>
+        }
+    </MudStack>
+</MudPaper> 
+
+@code{
+    [Parameter]
+    public string GoogleLink { get; set; }
+    [Parameter]
+    public string MicrosoftLink { get; set; }
+    [Parameter]
+    public string FacebookLink { get; set; }
+    [Parameter]
+    public string TwitterLink { get; set; }
+}
+
+
+
+
+
+
+
+
