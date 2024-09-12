@@ -1,0 +1,97 @@
+﻿[
+  {
+    "Card": "Attachments",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": false,
+      "Divider": false,
+      "Avatar": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": false,
+        "Title": "Student Details",
+        "SubTitle": "This Panel displays the Student details."
+      },
+      "CardAction": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": false,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Save",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Next >>",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "StudentPhoto",
+        "Label": "Student Photo",
+        "InputType": "FileUpload",
+        "FileAllowed": ".png, .jpg",
+        "IsMultiple": false,
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+      {
+        "FieldName": "StudentFile",
+        "Label": "Student File",
+        "InputType": "FileUpload",
+        "FileAllowed": ".pdf",
+        "IsMultiple": false,
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+      {
+        "FieldName": "Alert",
+        "Label": "Maximum file Size should be 3MB. Allowed Types .png, .jpg, .docx, .pdf.",
+        "InputType": "Alert",
+        "TileAlign": "justify-start",
+        "Severity": "Info",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,33 @@
+﻿[
+  {
+    "FieldName": "AdmissionNo",
+    "Label": "Admission Number",
+    "InputType": "Text",
+    "IsReadOnly": true,
+    "IsRequired": true,
+    "DefaultValue": "ST-12-2024",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6
+    }
+  },
+
+  {
+    "FieldName": "AdmissionDate",
+    "Label": "Admission Date",
+    "InputType": "Date",
+    "IsReadOnly": true,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 6,
+      "lg": 6
+    }
+  }
+]

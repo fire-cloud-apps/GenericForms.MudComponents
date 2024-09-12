@@ -1,0 +1,650 @@
+﻿[
+  {
+    "Card": "ImagePanel",    
+    "Elevation": 4,
+    "Spacing": 2,
+    "Outlined": false,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 1,
+      "lg": 1
+    },
+    "Header": {
+      "Enable": false,
+      "Divider": false,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Student Details",
+        "SubTitle": "This Panel displays the Student details."
+      },
+      "CardAction": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": false,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Cancel",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "ProfileImage",
+        "Label": "ProfileImage",
+        "InputType": "Image",
+        "Fluid": true,
+        "ImageSrc": "/img/students.png",
+        "Width": 80,
+        "Height": 80,
+        "Alt": "No Profile Image",
+        "Class": "rounded-lg",
+        "IsReadOnly": true,
+        "IsRequired": true,
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      }
+    ]
+  },
+  
+  {
+    "Card": "AdmissionHeaderPanel",
+    "Elevation": 4,
+    "Style": "height:105px;",
+    "Spacing": 2,
+    "Outlined": false,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 11,
+      "md": 11,
+      "lg": 11
+    },
+    "Header": {
+      "Enable": false,
+      "Divider": false,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Student Details",
+        "SubTitle": "This Panel displays the Student details."
+      },
+      "CardAction": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": false,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Cancel",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "AdmissionNo",
+        "Label": "Admission Number",
+        "InputType": "Text",
+        "IsReadOnly": true,
+        "IsRequired": true,
+        "DefaultValue": "ST-12-2024",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6
+        }
+      },
+      {
+        "FieldName": "AdmissionDate",
+        "Label": "Admission Date",
+        "InputType": "Date",
+        "IsReadOnly": true,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6
+        }
+      }
+    ]
+  },
+  
+  {
+    "Card": "Details",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": false,
+      "Divider": false,
+      "Avatar": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": false,
+        "Title": "Student Details",
+        "SubTitle": "This Panel displays the Student details."
+      },
+      "CardAction": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": false,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Cancel",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "FirstName",
+        "Label": "First Name",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "MidName",
+        "Label": "Middle Name",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "LastName",
+        "Label": "Last Name",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "StudentId",
+        "Label": "Student Id",
+        "InputType": "Numeric",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Class",
+        "Label": "Student Class",
+        "InputType": "Select",
+        "SelectItemList": [
+          {
+            "Text": "Pre-KG",
+            "Value": "PKG"
+          },
+          {
+            "Text": "UKG",
+            "Value": "UKG"
+          },
+          {
+            "Text": "LKG",
+            "Value": "LKG"
+          },
+          {
+            "Text": "I-Section",
+            "Value": "I"
+          },
+          {
+            "Text": "II-Section",
+            "Value": "II"
+          },
+          {
+            "Text": "III-Section",
+            "Value": "III"
+          }
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Section",
+        "Label": "Student Section",
+        "InputType": "Select",
+        "SelectItemList": [
+          {
+            "Text": "A-Section",
+            "Value": "A"
+          },
+          {
+            "Text": "B-Section",
+            "Value": "B"
+          },
+          {
+            "Text": "C-Section",
+            "Value": "C"
+          },
+          {
+            "Text": "D-Section",
+            "Value": "D"
+          }
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "DOB",
+        "Label": "Date Of Birth",
+        "InputType": "Date",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "BirthPlace",
+        "Label": "Birth Place",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Gender",
+        "Label": "Student Gender",
+        "InputType": "Select",
+        "SelectItemList": [
+          {
+            "Text": "Girl",
+            "Value": "Girl"
+          },
+          {
+            "Text": "Boy",
+            "Value": "Boy"
+          },
+          {
+            "Text": "Trans",
+            "Value": "T"
+          }
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Nationality",
+        "Label": "Nationality",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Language",
+        "Label": "Language",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "AdmissionCategory",
+        "Label": "Admission Category",
+        "InputType": "Select",
+        "SelectItemList": [
+          {
+            "Text": "Management",
+            "Value": "Mgmt"
+          },
+          {
+            "Text": "Merit",
+            "Value": "Merit"
+          }
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      }
+    ]
+  },
+  
+  {
+    "Card": "Contacts",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": false,
+      "Divider": false,
+      "Avatar": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": false,
+        "Title": "Student Details",
+        "SubTitle": "This Panel displays the Student details."
+      },
+      "CardAction": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Next >>",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "AddressName",
+        "Label": "Address Name",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+      {
+        "FieldName": "AddressLine1",
+        "Label": "Address Line 1",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "AddressLine2",
+        "Label": "Address Line 2",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "City",
+        "Label": "City",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "PinCode",
+        "Label": "Pin Code",
+        "InputType": "Numeric",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "State",
+        "Label": "State",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Country",
+        "Label": "Country",
+        "InputType": "AutoComplete",
+        "SelectItemList": [],
+        "IsSearch": true,
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Mobile",
+        "Label": "Mobile No",
+        "PatternMask": "+(91) 00000 00000",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Mobile is Required."
+        }
+      },
+      {
+        "FieldName": "SecondaryMobile",
+        "Label": "Secondary Mobile No",
+        "PatternMask": "+(91) 00000 00000",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "Email",
+        "Label": "Email Id",
+        "InputType": "Email",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Email is Required."
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+﻿<MudNavMenu Class="mud-width-full pa-2"
+            Rounded="true"
+            Bordered="false"
+            Margin="Margin.Normal" Color="Color.Tertiary">
+    <MudText Typo="Typo.h6" Class="px-4">Blazor Forms</MudText>
+    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Quickly usable Forms</MudText>
+    <MudDivider Class="my-2" />
+    <MudNavLink Href="/dynamic-help" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+    <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
+    <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Receipt" Disabled="true">Billing</MudNavLink>
+    <MudNavGroup Title="Authentication"
+                 Icon="@Icons.Material.Filled.Security" Expanded="false">
+        <MudNavLink Href="authentication/login" Icon="@Icons.Material.Filled.Login">Login From</MudNavLink>
+        <MudNavLink Href="authentication/social-network" Icon="@Icons.Material.Filled.SocialDistance">Social Network</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Academy Form"
+                 Icon="@Icons.Material.Filled.DynamicForm" Expanded="true">
+        <MudNavLink Href="Form/Academy/StudentProfile" Icon="@Icons.Material.Filled.ContactPage">Student Profile</MudNavLink>
+
+    </MudNavGroup>
+    <MudNavGroup Title="General Form"
+                 Icon="@Icons.Material.Filled.DynamicForm" Expanded="true">
+        <MudNavLink Href="forms/feedback" Icon="@Icons.Material.Filled.ContactPage">Feedback Form</MudNavLink>
+        
+    </MudNavGroup>
+</MudNavMenu>

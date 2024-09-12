@@ -1,0 +1,306 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Extensions.Logging
+@inject ILogger<DynamicMudForm> Logger
+
+@* @(ValidationFuncList.ContainsKey(field.FieldName) ? ValidationFuncList[field.FieldName] : null) *@
+<MudForm @ref="_form" @bind-IsValid="@success" @bind-Errors="@errors">
+    
+<MudGrid Spacing="0">
+    @if (FormBuilders is not null)
+    {
+        foreach (var card in FormBuilders)
+        {
+            <MudItem xs="@card.GridPosition.xs"
+                     sm="@card.GridPosition.sm"
+                     md="@card.GridPosition.md"
+                     lg="@card.GridPosition.lg">
+
+                <MudCard Style="@card.Style"
+                    Elevation="@card.Elevation"
+                    Outlined="@card.Outlined"
+                    Class="@card.Class">
+
+                    @if (card.Header.Enable)
+                    {
+                        <MudCardHeader>
+                            <CardHeaderAvatar>
+                                @if (card.Header.Avatar.Enable)
+                                {
+                                    <MudAvatar Color="@card.Header.Avatar.Color"
+                                               Variant="@card.Header.Avatar.Variant">
+                                        <MudIcon Icon="@card.Header.Avatar.Icon"/>
+                                    </MudAvatar>
+                                }
+                            </CardHeaderAvatar>
+
+                            <CardHeaderContent>
+                                @if (card.Header.Content.Enable)
+                                {
+                                    <MudText Typo="Typo.body1">@card.Header.Content.Title </MudText>
+                                    <MudText Typo="Typo.body2">@card.Header.Content.SubTitle</MudText>
+                                }
+                            </CardHeaderContent>
+
+                            <CardHeaderActions>
+                                @if (card.Header.CardAction.Enable)
+                                {
+                                    
+                                    <MudIconButton Icon="@card.Header.CardAction.Icon"
+                                                   OnClick="@card.Header.CardAction.ActionTrigger"
+                                                   Color="@card.Header.CardAction.Color"/>
+                                }
+                            </CardHeaderActions>
+                        </MudCardHeader>
+                    }
+
+                    <MudCardContent>
+                        
+                        @if (card.Header.Divider)
+                        {
+                            <MudDivider Class="mb-2"/>
+                        }
+                        
+                        
+                        <MudGrid Spacing="@card.Spacing">
+                                @foreach (var field in card.Fields)
+                                {
+                                    <MudItem xs="@field.GridPosition.xs"
+                                             sm="@field.GridPosition.sm"
+                                             md="@field.GridPosition.md"
+                                             lg="@field.GridPosition.lg">
+
+                                        @switch (field.InputType)
+                                        {
+                                            case InputFieldType.Text:
+                                            default:
+                                                <MudTextField @bind-Value="formData[field.FieldName]"
+                                                              Mask="@(field.PatternMask != null ? new PatternMask(field.PatternMask) : null)"
+                                                              Validation="@field.ValidateInput"
+                                                              Label="@field.Label"
+
+                                                              Adornment="@field.Adornment"
+                                                              AdornmentText="@field.AdornmentText"
+                                                              AdornmentColor="@field.AdornmentColor"
+                                                              AdornmentIcon="@field.AdornmentIcon"
+
+                                                              ReadOnly="@field.IsReadOnly"
+                                                              Required="@field.Validation.IsRequired"
+                                                              RequiredError="@field.Validation.RequiredError"
+                                                              Variant="@field.Variant">
+                                                </MudTextField>
+                                                break;
+                                            case InputFieldType.MultiLine:
+                                                <MudTextField @bind-Value="formData[field.FieldName]"
+                                                              Required="@field.Validation.IsRequired"
+                                                              ReadOnly="@field.IsReadOnly"
+                                                              RequiredError="@field.Validation.RequiredError"
+                                                              Lines="@field.Line" Label="@field.Label" Variant="@field.Variant">
+                                                </MudTextField>
+                                                break;
+                                            case InputFieldType.Email:
+                                                <MudTextField @bind-Value="formData[field.FieldName]"
+                                                              InputType="InputType.Email"
+                                                              ReadOnly="@field.IsReadOnly"
+                                                              Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })"
+                                                              Label="@field.Label" Variant="@field.Variant">
+                                                </MudTextField>
+                                                break;
+                                            case InputFieldType.Numeric:
+                                                <MudNumericField @bind-Value="formDataNumeric[field.FieldName]"
+                                                                 ReadOnly="@field.IsReadOnly"
+                                                                 Label="@field.Label" Variant="@field.Variant"/>
+                                                break;
+                                            case InputFieldType.Radio:
+                                                <MudRadioGroup @bind-Value="formData[field.FieldName]" ReadOnly="@field.IsReadOnly">
+                                                    @foreach (var item in @field.SelectItemList)
+                                                    {
+                                                        <MudRadio Value="item.Value">@item.Text</MudRadio>
+                                                        //Console.WriteLine($"Radio Value: {item.Value}, Text: {item.Text}");
+                                                    }
+                                                </MudRadioGroup>
+                                                break;
+                                            case InputFieldType.Select:
+                                                <MudSelect T="string" Label="@field.Label" Variant="@field.Variant"
+                                                           ReadOnly="@field.IsReadOnly"
+                                                           @bind-Value="formData[field.FieldName]">
+                                                    @foreach (var item in @field.SelectItemList)
+                                                    {
+                                                        <MudSelectItem Value="item.Value">@item.Text</MudSelectItem>
+                                                        //Console.WriteLine($"Selected Value: {item.Value}, Text: {item.Text}");
+                                                    }
+                                                </MudSelect>
+                                                break;
+                                            case InputFieldType.DateTime:
+                                                <MudTextField Format="s"
+                                                              @bind-Value="formDataDateTime[field.FieldName]"
+                                                              Label="@field.Label" ReadOnly="@field.IsReadOnly"
+                                                              InputType="InputType.DateTimeLocal"/>
+
+
+                                                @* <MudDatePicker Label="@field.Label" @key="field.Id" *@
+                                                @*                @bind-Value="formDataDateTime[field.FieldName]" *@
+                                                @*                Variant="@field.Variant" />  *@
+
+                                                @*  MudDatePicker does not works with Lazy Loading/Dynamic loading.. *@
+
+                                                break;
+                                            case InputFieldType.Date:
+                                                <MudTextField Format="yyyy-MM-dd" ReadOnly="@field.IsReadOnly"
+                                                              @bind-Value="formDataDateTime[field.FieldName]"
+                                                              Label="@field.Label"
+                                                              InputType="InputType.Date"/>
+
+                                                @*  MudDatePicker does not works with Lazy Loading/Dynamic loading.. *@
+                                                break;
+                                            case InputFieldType.Time:
+                                                <MudTextField @bind-Value="formData[field.FieldName]"
+                                                              Label="@field.Label" ReadOnly="@field.IsReadOnly"
+                                                              InputType="InputType.Time"/>
+                                                break;
+                                            case InputFieldType.Password:
+                                                <MudTextField @bind-Value="formData[field.FieldName]"
+                                                              ReadOnly="@field.IsReadOnly"
+                                                              Label="@field.Label" Variant="@field.Variant" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="PasswordToggle" AdornmentAriaLabel="Show Password"/>
+                                                break;
+                                            case InputFieldType.CheckBox:
+                                                <MudCheckBox @bind-Value="formDataBool[field.FieldName]"
+                                                             ReadOnly="@field.IsReadOnly"
+                                                             Label="@field.Label"/>
+                                                break;
+                                            case InputFieldType.Switch:
+                                                <MudSwitch @bind-Value="formDataBool[field.FieldName]"
+                                                           ReadOnly="@field.IsReadOnly"
+                                                           Label="@field.Label"/>
+                                                break;
+                                            case InputFieldType.AutoComplete:
+                                                <MudAutocomplete T="string"
+                                                                 @bind-Value="formData[field.FieldName]"
+                                                                 ResetValueOnEmptyText="true"
+                                                                 SearchFunc="@field.AutoCompleteFunction"
+                                                                 Label="@field.Label"
+                                                                 ReadOnly="@field.IsReadOnly"/>
+                                                break;
+                                            case InputFieldType.Title:
+                                                <div class="@("d-flex " + @field.TileAlign + " flex-grow-1 gap-2")">
+                                                    <MudText Typo="@field.TextStyle">@field.Label</MudText>
+                                                </div>
+                                                break;
+                                            case InputFieldType.Divider:
+                                                <MudDivider Class="ma-2"/>
+                                                break;
+                                            case InputFieldType.FileUpload:
+                                                @*     <MudFileUpload T="IReadOnlyList<IBrowserFile>"
+                                                        Accept="@field.FileAllowed" FilesChanged="FileUpload" MaximumFileCount="10">
+                                                        <ActivatorContent>
+                                                            <MudButton Variant="@field.Variant"
+                                                                       StartIcon="@Icons.Material.Filled.AttachFile">
+                                                                @($"Upload Files ({FileLists.Count})")
+                                                            </MudButton>
+                                                        </ActivatorContent>
+                                                    </MudFileUpload> *@
+                                                <MudFileUpload T="IBrowserFile"
+                                                               Accept="@field.FileAllowed"
+                                                               FilesChanged="@field.FilesChangedFunction">
+                                                    <ActivatorContent>
+                                                        <MudButton Variant="@field.Variant"
+                                                                   StartIcon="@Icons.Material.Filled.AttachFile">
+                                                            @if (GlobalBuilderSettings.SelectedFile.ContainsKey(@field.FieldName))
+                                                            {
+                                                                <MudText>
+                                                                    @GlobalBuilderSettings.SelectedFile[@field.FieldName].Name
+                                                                </MudText>
+                                                            }
+                                                            else
+                                                            {
+                                                                @("Select File - Allowed Only " + @field.FileAllowed)
+                                                            }
+                                                        </MudButton>
+                                                    </ActivatorContent>
+                                                </MudFileUpload>
+                                                break;
+                                            case InputFieldType.Alert:
+                                                <div class="@("d-flex " + @field.TileAlign + " flex-grow-1 gap-2")">
+                                                    <MudAlert Severity="@field.Severity"
+                                                              Variant="@field.Variant">
+                                                        @field.Label
+                                                    </MudAlert>
+                                                </div>
+                                                break;
+                                            case InputFieldType.Field:
+                                                <MudField Label="@field.Label" Variant="@field.Variant">
+                                                    @field.Label
+                                                </MudField>
+                                                break;
+                                            case InputFieldType.Image:
+                                                <MudImage Fluid="@field.Fluid"
+                                                          Src="@field.ImageSrc" Width="@field.Width"
+                                                          Height="@field.Height"
+                                                          Alt="@field.Alt" Class="@field.Class"/>
+                                                break;
+                                            @* case InputFieldType.Custom:
+                                Furture we can use 'RenderFragmet'
+                                break; *@
+                                        }
+                                    </MudItem>
+                                }
+                            </MudGrid>
+                        
+                    </MudCardContent>
+
+                    @if (card.Footer.Enable)
+                    {
+                        <MudCardActions>
+                            <div class="@card.Footer.CustomClass">
+                                @if (card.Footer.EnableCancel)
+                                {
+                                    <MudButton Class="ma-4"
+                                               Variant="@card.Footer.CancelVariant"
+                                               Color="@card.Footer.CancelColor"
+                                               OnClick="@card.Footer.Cancel_Handler">
+                                        @card.Footer.CancelText
+                                    </MudButton>
+                                }
+                                @if (card.Footer.EnableSubmit)
+                                {
+                                    <MudButton Class="ma-4" Type="Submit"
+                                               Variant="@card.Footer.SubmitVariant"
+                                               Color="@card.Footer.SubmitColor"
+                                               OnClick="@(async (e) => await @card.Footer.Submit_Handler(e))">
+                                        @card.Footer.SubmitText
+                                    </MudButton>
+                                }
+                            </div>
+                        </MudCardActions>
+                    }
+                </MudCard>
+
+            </MudItem>
+        }
+    }
+    else
+    {
+        <MudCard >
+            <MudCardHeader>
+                <CardHeaderAvatar>
+                    <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="40px" Width="40px"/>
+                </CardHeaderAvatar>
+                <CardHeaderContent>
+                    <MudSkeleton Animation="Animation.Wave" Width="40%"/>
+                    <MudSkeleton Animation="Animation.Wave" Width="60%"/>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Height="250px"/>
+            <MudCardContent>
+                <MudSkeleton Animation="Animation.Wave"/>
+            </MudCardContent>
+            <MudCardActions>
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-2 mb-2"/>
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-3 mb-2"/>
+            </MudCardActions>
+        </MudCard>
+    }
+
+</MudGrid>
+    
+</MudForm>

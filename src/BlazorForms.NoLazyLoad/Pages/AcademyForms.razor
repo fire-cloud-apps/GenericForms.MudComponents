@@ -1,0 +1,287 @@
+﻿@page "/forms/academy/{QueryParam}/{Title}"
+
+@using Blazor.UI.FormGenerator
+@using Blazor.UI.FormGenerator.Builders
+@inject HttpClient Http
+
+@code
+{
+    [Parameter] public string QueryParam { get; set; }
+    [Parameter] public string Title { get; set; }
+
+    DynamicMudForm _formStudentDetails;
+
+    private void Callback(MouseEventArgs obj)
+    {
+        string jsonData = _formStudentDetails.GetFormData();
+        Console.WriteLine($"Student Enrolment {jsonData}");
+
+    }
+}
+
+@* BreadCrum Initialization Code - Start *@
+<MudBreadcrumbs Items="_items"/>
+
+@code {
+
+    private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem("General Forms", href: "/",
+            icon: Icons.Material.Outlined.DynamicForm),
+
+        new BreadcrumbItem("Feedback Form",
+            icon: Icons.Material.Outlined.Person, disabled: false,
+            href: "/feedback-form"),
+    };
+
+}
+
+@* Blazor Form - Start  ValidationFuncList="_ValidationFuncList" HeaderProperty="_headerProperty" *@
+@if (_headerProperty is not null && formsHeaderInputs is not null)
+{
+    <DynamicMudForm Title="Admission Header" HeaderProperty="_headerProperty" FormBuilderInput="@formsHeaderInputs"/>
+    Console.WriteLine("Customer Academy Title - Form");
+}
+else
+{
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="40px" Width="40px"/>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudSkeleton Animation="Animation.Wave" Width="40%"/>
+                <MudSkeleton Animation="Animation.Wave" Width="60%"/>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Height="250px"/>
+        <MudCardContent>
+            <MudSkeleton Animation="Animation.Wave"/>
+        </MudCardContent>
+        <MudCardActions>
+            <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-2 mb-2"/>
+            <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-3 mb-2"/>
+        </MudCardActions>
+    </MudCard>
+}
+
+@if (formEnrolment is not null)
+{
+    <DynamicMudForm @ref="_formStudentDetails" Title="Student Enrolment" HeaderProperty="_enrolmentProperty" FormBuilderInput="@formEnrolment"/>
+    Console.WriteLine("Customer Academy Title - Form");
+}
+
+@if (formAddressDetails is not null)
+{
+    <DynamicMudForm Title="Student Address Enrolment"
+                    HeaderProperty="@(new FormProperty(true, "Address", "Student Address", new CardAvatar(){ Icons= @Icons.Material.Filled.LocationOn} ))"
+                    FormBuilderInput="@formAddressDetails" AutoCompleteFuncList="_funcAddressList"/>
+    Console.WriteLine("Student Address Enrolment - Form");
+}
+
+@if (formAttachments is not null)
+{
+<DynamicMudForm Title="Student Attachments"
+                HeaderProperty="@(new FormProperty(true, "Attachments", "Student Files", new CardAvatar(){ Icons= @Icons.Material.Filled.AttachFile} ))"
+                
+                FormBuilderInput="@formAttachments" 
+                FileUploadFuncList="@_fileUploadFuncList"
+                SelectedFile="@_selectedFile"/>
+Console.WriteLine("Student Address Enrolment - Form");
+}
+
+<MudButton OnClick="Callback"> Submit Action </MudButton>
+
+@* Initialization Event Handler *@
+
+@code
+{
+    public FormProperty _headerProperty;
+    private FormBuilderInputs[]? formsHeaderInputs;
+    public FormProperty _enrolmentProperty;
+    private FormBuilderInputs[]? formEnrolment;
+
+    private FormBuilderInputs[]? formAddressDetails;
+    public IDictionary<string, Func<string, IEnumerable<string>>> _ValidationFuncList = new Dictionary<string, Func<string, IEnumerable<string>>>();
+    
+    private FormBuilderInputs[]? formAttachments;
+    public Dictionary<string, IBrowserFile> _selectedFile { get; set; } = new Dictionary<string, IBrowserFile>();
+    IDictionary<string, Func<IBrowserFile, Task?>> _fileUploadFuncList
+    {
+        get;
+        set;
+    } = new Dictionary<string, Func<IBrowserFile, Task?>>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        #region Enrolment Header
+
+        formsHeaderInputs = await Http.GetFromJsonAsync<FormBuilderInputs[]>("forms/student/enrolment-header.json");
+        Console.WriteLine($"Form Input: {formsHeaderInputs.Length} ");
+        _headerProperty = new FormProperty()
+        {
+            EnableCard = false,
+            Title = "Feedback",
+            TitleDivider = false,
+            SubTitle = "Get in touch with our expert.",
+            CardAvatar = new CardAvatar()
+            {
+                Icons = @Icons.Material.Filled.DynamicFeed,
+                Color = Color.Primary,
+                Variant = Variant.Filled,
+                IsEnable = true,
+            },
+            CardHeaderAction = new CardAction()
+            {
+                Icons = Icons.Material.Filled.Settings,
+                Color = Color.Default,
+                CardHeaderTrigger = CardHeaderTrigger
+            },
+            CardSettings = new CardSettings()
+            {
+                Elevation = 2,
+                Outlined = false,
+                FooterSettings = new FooterSettings()
+                {
+                    EnableFooter = false
+                }
+            }
+        };
+        //Forms to validate with custom method.
+        _ValidationFuncList.Add("AdmissionNo", MaxCharacters);
+
+        #endregion
+
+        #region Student Enrolment Details
+
+        formEnrolment = await Http.GetFromJsonAsync<FormBuilderInputs[]>("forms/student/" + QueryParam + ".json");
+        Console.WriteLine($"Form Input: {formEnrolment.Length} ");
+
+        _enrolmentProperty = new FormProperty()
+        {
+            EnableCard = true,
+            Title = "Student Details",
+            TitleDivider = true,
+            SubTitle = "Student General Details",
+            CardAvatar = new CardAvatar()
+            {
+                Icons = @Icons.Material.Filled.PersonAdd,
+                Color = Color.Primary,
+                Variant = Variant.Outlined,
+                IsEnable = true,
+            },
+            CardHeaderAction = new CardAction()
+            {
+                IsEnable = false,
+                Icons = Icons.Material.Filled.Settings,
+                Color = Color.Default,
+                CardHeaderTrigger = CardHeaderTrigger
+            },
+            CardSettings = new CardSettings()
+            {
+                Elevation = 0,
+                Outlined = true,
+                FooterSettings = new FooterSettings()
+                {
+                    EnableFooter = false
+                }
+            }
+        };
+
+        #endregion
+
+        #region Student Address
+
+        formAddressDetails = await Http.GetFromJsonAsync<FormBuilderInputs[]>("forms/student/student-contacts.json");
+        Console.WriteLine($"Form Address Input: {formAddressDetails.Length} ");
+        _funcAddressList.Add("Country", FindCountry);//Attaches the Custom Function in 'AutoComplete'.
+        
+        #endregion
+        
+        #region Student Attachment
+
+        formAttachments = await Http.GetFromJsonAsync<FormBuilderInputs[]>("forms/student/attachments.json");
+        Console.WriteLine($"Form Attachments Input: {formAddressDetails.Length} ");
+        _fileUploadFuncList.Add("StudentPhoto", UploadPhotoFile);//Attaches the Custom Function in 'FileUpload'.
+        _fileUploadFuncList.Add("StudentFile", UploadStudentFile);
+        
+        #endregion
+    }
+
+    #region File Upload Event Handler
+
+    private async Task UploadPhotoFile(IBrowserFile file)
+    {
+        string key = "StudentPhoto";
+        if (_selectedFile.ContainsKey(key))
+        {
+            _selectedFile.Remove(key);
+        }
+        _selectedFile.Add(key, file);
+    }
+    private async Task UploadStudentFile(IBrowserFile file)
+    {
+        string key = "StudentFile";
+        if (_selectedFile.ContainsKey(key))
+        {
+            _selectedFile.Remove(key);
+        }
+        _selectedFile.Add(key, file);
+    }
+    #endregion
+    
+
+    private IEnumerable<string> MaxCharacters(string ch)
+    {
+        if (!string.IsNullOrEmpty(ch) && 25 < ch?.Length)
+            yield return "Max 25 characters";
+    }
+}
+
+@* Button Action Event Handler - Start *@
+
+@code
+{
+    private async Task? CardHeaderTrigger()
+    {
+        Console.WriteLine("Icon Clicked From CArd Header");
+    }
+
+    public void SubmitEventInvoke(string jsonData)
+    {
+        Console.WriteLine($"Json Data Returned : {jsonData}");
+    }
+}
+
+@* Auto Search Function by Pass from Parent*@
+@code
+{
+    public IDictionary<string, Func<string, CancellationToken, Task<IEnumerable<string>>>> _funcAddressList = new Dictionary<string, Func<string, CancellationToken, Task<IEnumerable<string>>>>();
+    private string[] countries =
+    {
+        "Alabama", "Alaska", "American Samoa", "Arizona",
+        "Arkansas", "California", "Colorado", "Connecticut",
+        "Delaware", "District of Columbia", "Federated States of Micronesia",
+        "Florida", "Georgia", "Guam", "Hawaii", "Idaho",
+        "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky",
+        "Louisiana", "Maine", "Marshall Islands", "Maryland",
+        "Massachusetts", "Michigan", "Minnesota", "Mississippi",
+        "Missouri", "Montana", "Nebraska", "Nevada",
+        "New Hampshire", "New Jersey", "New Mexico", "New York",
+        "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio",
+        "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico",
+        "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+        "Texas", "Utah", "Vermont", "Virgin Island", "Virginia",
+        "Washington", "West Virginia", "Wisconsin", "Wyoming",
+    };
+    private async Task<IEnumerable<string>> FindCountry(string value, CancellationToken token)
+    {
+        // In real life use an asynchronous function for fetching data from an api.
+        await Task.Delay(5, token);
+        //To Test using API's https://dummyjson.com/docs/products#products-search
+        // if text is null or empty, show complete list
+        if (string.IsNullOrEmpty(value))
+            return countries;
+        return countries.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+}

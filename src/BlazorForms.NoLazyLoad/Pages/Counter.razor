@@ -1,0 +1,41 @@
+﻿@page "/counter"
+@inject HttpClient Http
+@using System.Linq.Expressions
+@using System.Linq
+
+@if (_formBuilders is not null)
+{
+    @* <DynamicViews FormBuilders="@_formBuilders" /> *@
+    <DynamicMudForm FormBuilders="_formBuilders" />
+}
+
+
+@code
+{
+    FormBuilder[] _formBuilders;
+    protected override async Task OnInitializedAsync()
+    {
+        _formBuilders = await Http.GetFromJsonAsync<FormBuilder[]>("forms/student/view.json");
+
+        var Panel1 = _formBuilders.Where(card => card.Card == "Panel1").FirstOrDefault();
+        if (Panel1 is not null)
+        {
+            Panel1.Header.CardAction.ActionTrigger = async () =>
+            {
+                Console.WriteLine("Triggered the Counter Action");
+            };
+            
+            var nameField = Panel1.Fields.Where(field => field.FieldName == "Name").FirstOrDefault();
+            if (nameField is not null)
+            {
+                nameField.ValidateInput = MaxCharacters;
+            }
+        }
+    }
+    
+    private IEnumerable<string> MaxCharacters(string ch)
+    {
+        if (!string.IsNullOrEmpty(ch) && 25 < ch?.Length)
+            yield return "Max 25 characters";
+    }
+}

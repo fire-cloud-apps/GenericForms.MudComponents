@@ -1,0 +1,173 @@
+﻿[
+  {
+    "FieldName": "AddressName",
+    "Label": "Address Name",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    }
+  },
+
+  {
+    "FieldName": "AddressLine1",
+    "Label": "Address Line 1",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "AddressLine2",
+    "Label": "Address Line 2",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "City",
+    "Label": "City",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "PinCode",
+    "Label": "Pin Code",
+    "InputType": "Numeric",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "State",
+    "Label": "State",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "Country",
+    "Label": "Country",
+    "InputType": "AutoComplete",
+    "SelectItemList":[],
+    "IsSearch": true,
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+
+  {
+    "FieldName": "Mobile",
+    "Label": "Mobile No",
+    "PatternMask": "+(91) 00000 00000",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    },
+    "Validation": {
+      "IsRequired": true,
+      "RequiredError": "Mobile is Required."
+    }
+  },
+
+  {
+    "FieldName": "SecondaryMobile",
+    "Label": "Secondary Mobile No",
+    "PatternMask": "+(91) 00000 00000",
+    "InputType": "Text",
+    "IsReadOnly": false,
+    "IsRequired": false,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    }
+  },
+  
+  {
+    "FieldName": "Email",
+    "Label": "Email Id",
+    "InputType": "Email",
+    "IsReadOnly": false,
+    "IsRequired": true,
+    "DefaultValue": "",
+    "Variant": "Text",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 4,
+      "lg": 4
+    },
+    "Validation": {
+      "IsRequired": true,
+      "RequiredError": "Email is Required."
+    }
+  }
+]

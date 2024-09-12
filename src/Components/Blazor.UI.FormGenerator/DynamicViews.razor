@@ -1,0 +1,130 @@
+﻿<MudGrid Spacing="0">
+    @if (FormBuilders is not null)
+    {
+        foreach (var card  in FormBuilders)
+        {
+            <MudItem xs="@card.GridPosition.xs"
+                     sm="@card.GridPosition.sm"
+                     md="@card.GridPosition.md"
+                     lg="@card.GridPosition.lg">
+
+                <MudCard
+                    Elevation="@card.Elevation"
+                    Outlined="@card.Outlined"
+                    Class="@card.Class">
+                    
+                    @if (card.Header.Enable)
+                    {
+                        <MudCardHeader>
+                            <CardHeaderAvatar>
+                                @if (card.Header.Avatar.Enable)
+                                {
+                                    <MudAvatar Color="@card.Header.Avatar.Color"
+                                               Variant="@card.Header.Avatar.Variant">
+                                        <MudIcon Icon="@card.Header.Avatar.Icon"/>
+                                    </MudAvatar>
+                                }
+                            </CardHeaderAvatar>
+
+                            <CardHeaderContent>
+                                @if (card.Header.Content.Enable)
+                                {
+                                    <MudText Typo="Typo.body1">@card.Header.Content.Title </MudText>
+                                    <MudText Typo="Typo.body2">@card.Header.Content.SubTitle</MudText>
+                                }
+                            </CardHeaderContent>
+
+                            <CardHeaderActions>
+                                @if (card.Header.CardAction.Enable)
+                                {
+                                    <MudIconButton Icon="@card.Header.CardAction.Icon"
+                                                   OnClick="@CardHeader_ActionTrigger"
+                                                   Color="@card.Header.CardAction.Color"/>
+                                }
+                            </CardHeaderActions>
+                        </MudCardHeader>
+                    }
+
+                    <MudCardContent>
+                        <MudGrid Spacing="@card.Spacing">
+                            @foreach (var field in card.Fields)
+                            {
+                                <MudItem xs="@field.GridPosition.xs"
+                                         sm="@field.GridPosition.sm"
+                                         md="@field.GridPosition.md"
+                                         lg="@field.GridPosition.lg">
+                                    @switch (field.InputType)
+                                    {
+                                        case InputFieldType.Text:
+                                        default:
+                                            <MudTextField Label="@field.Label"
+                                                          Variant="@field.Variant"
+                                                          Value="@field.DefaultValue"
+                                                          Adornment="@field.Adornment"
+                                                          AdornmentText="@field.AdornmentText"
+                                                          AdornmentColor="@field.AdornmentColor"
+                                                          AdornmentIcon="@field.AdornmentIcon"/>
+
+                                            break;
+                                    }
+
+                                </MudItem>
+                            }
+                        </MudGrid>
+                    </MudCardContent>
+
+                    @if (card.Footer.Enable)
+                    {
+                        <MudCardActions>
+                            <div class="@card.Footer.CustomClass">
+                                @if (card.Footer.EnableCancel)
+                                {
+                                    <MudButton Class="ma-4"
+                                               Variant="@card.Footer.CancelVariant"
+                                               Color="@card.Footer.CancelColor"
+                                               OnClick="@Cancel_Handler">
+                                        @card.Footer.CancelText
+                                    </MudButton>
+                                }
+                                @if (card.Footer.EnableSubmit)
+                                {
+                                    <MudButton Class="ma-4" Type="Submit"
+                                               Variant="@card.Footer.SubmitVariant"
+                                               Color="@card.Footer.SubmitColor"
+                                               OnClick="@(async (e) => await Submit_Handler(e))">
+                                        @card.Footer.SubmitText
+                                    </MudButton>
+                                }
+                            </div>
+                        </MudCardActions>
+                    }
+                </MudCard>
+                 
+            </MudItem>
+        }
+    }
+    else
+    {
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderAvatar>
+                    <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="40px" Width="40px"/>
+                </CardHeaderAvatar>
+                <CardHeaderContent>
+                    <MudSkeleton Animation="Animation.Wave" Width="40%"/>
+                    <MudSkeleton Animation="Animation.Wave" Width="60%"/>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudSkeleton SkeletonType="SkeletonType.Rectangle" Animation="Animation.Wave" Height="250px"/>
+            <MudCardContent>
+                <MudSkeleton Animation="Animation.Wave"/>
+            </MudCardContent>
+            <MudCardActions>
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-2 mb-2"/>
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Animation="Animation.Wave" Height="30px" Width="30px" Class="ml-3 mb-2"/>
+            </MudCardActions>
+        </MudCard>
+    }
+    
+</MudGrid>
+
