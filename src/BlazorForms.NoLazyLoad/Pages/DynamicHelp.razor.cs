@@ -1,15 +1,14 @@
-﻿using System.Net;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
+using Blazor.Shared.FormGenerator.Models;
 using Blazor.UI.FormGenerator;
-using Blazor.UI.FormGenerator.Builders;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 
 namespace BlazorForms.NoLazyLoad.Pages;
 
 public partial class DynamicHelp : ComponentBase
 {
     private DynamicMudForm _dynamicMudFrom;
+    
     #region Initialization
     protected override async Task OnInitializedAsync()
     {
@@ -48,6 +47,6 @@ public partial class DynamicHelp : ComponentBase
     public async Task SubmitButton_Click(EventArgs args)
     {
         Console.WriteLine("Submit Button Click");
-        _dynamicMudFrom._form.Validate();
+        _dynamicMudFrom.GetMudFrom().Validate();
     }
 }

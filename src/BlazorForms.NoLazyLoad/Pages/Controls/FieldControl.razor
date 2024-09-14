@@ -1,0 +1,15 @@
+﻿@page "/Control/field"
+
+@inject HttpClient Http
+@inject ILogger<TextControl> Logger
+
+@if (_formAllControlBuilders is not null)
+{
+    <DynamicMudForm @ref="_dynamicMudFrom" FormBuilders="_formAllControlBuilders"/>
+    <MudPaper Class="ma-4 pa-4" Elevation="4">
+        <MudTextField Label="JSON Control data" ReadOnly="true"
+                      Variant="Variant.Filled" Lines="80"
+                      @bind-Value="@jsonText"  />
+    </MudPaper>
+    
+}

@@ -1,0 +1,82 @@
+﻿[
+  {
+    "Card": "Date",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Date Details",
+        "SubTitle": "Some subText for the panel to indicate/provide information"
+      },
+      "CardAction": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": false,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Validate",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "SimpleDate",
+        "Label": "Simple Date",
+        "InputType": "Date",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6
+        }
+      },
+      {
+        "FieldName": "RequiredDateText",
+        "Label": "Required Date",
+        "InputType": "Date",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Input is Required."
+        }
+      }
+
+    ]
+  }
+]

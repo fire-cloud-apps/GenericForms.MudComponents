@@ -1,4 +1,4 @@
-﻿using Blazor.UI.FormGenerator.Builders;
+﻿using Blazor.Shared.FormGenerator.Models;
 using Microsoft.AspNetCore.Components;
 
 

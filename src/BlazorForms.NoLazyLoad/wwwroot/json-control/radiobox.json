@@ -1,0 +1,97 @@
+﻿[
+  {
+    "Card": "Radiobox",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Radio Details",
+        "SubTitle": "Some subText for the panel to indicate/provide information"
+      },
+      "CardAction": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": false,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Validate",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      
+      {
+        "FieldName": "SimpleRadioBox",
+        "Label": "Simple Radio",
+        "InputType": "Radio",
+        "SelectItemList": [
+          {"Text":"2024","Value":"2024"},
+          {"Text":"2023","Value":"2023"},
+          {"Text":"2022","Value":"2022"},
+          {"Text":"2021","Value":"2021"},
+          {"Text":"2020","Value":"2020"}
+        ],
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6
+        }
+      },
+      
+      {
+        "FieldName": "RequiredRadiobox",
+        "Label": "Required RadioBox",
+        "InputType": "Radio",
+        "SelectItemList": [
+          {"Text":"Required","Value":"Required"},
+          {"Text":"Male","Value":"Male"},
+          {"Text":"Female","Value":"Female"},
+          {"Text":"Other","Value":"Other"}
+        ],
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Input is Required."
+        }
+      }
+
+    ]
+  }
+]

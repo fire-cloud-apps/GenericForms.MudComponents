@@ -1,54 +1,10 @@
-﻿using System.Runtime.InteropServices;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using Blazor.Shared.FormGenerator.Conversions;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Logging;
 using MudBlazor;
+using Color = MudBlazor.Color;
 
-namespace Blazor.UI.FormGenerator.Builders;
-
-public class FormBuilder
-{
-    public string Card { get; set; }
-    public string Style { get; set; }
-    public int Elevation { get; set; }
-    public int Spacing { get; set; } = 2;
-    public bool Outlined { get; set; }
-    public string Class { get; set; }
-    public GridPosition GridPosition { get; set; }
-    public Header Header { get; set; }
-    public Footer Footer { get; set; }
-
-    public List<Field> Fields { get; set; }
-}
-// Root myDeserializedClass = JsonConvert.DeserializeObject<List<Root>>(myJsonResponse);
-public class Avatar
-{
-    public bool Enable { get; set; }
-    [JsonConverter(typeof(ColorConverter))]
-    public Color Color { get; set; }
-    [JsonConverter(typeof(IconTypeConverter))]
-    public string Icon { get; set; }
-    [JsonConverter(typeof(VariantTypeConverter))]
-    public Variant Variant { get; set; }
-}
-
-public class CardActions
-{
-    public bool Enable { get; set; }
-    [JsonConverter(typeof(ColorConverter))]
-    public Color Color { get; set; }
-    [JsonConverter(typeof(IconTypeConverter))]
-    public string Icon { get; set; }
-    [JsonIgnore]
-    public Func<Task?> ActionTrigger { get; set; } = async () => { Console.WriteLine("'Card Header Action' Default action Triggered. If you need to pass your method pass it from the parent controller."); };
-}
-
-public class Content
-{
-    public bool Enable { get; set; }
-    public string Title { get; set; }
-    public string SubTitle { get; set; }
-}
+namespace Blazor.Shared.FormGenerator.Models;
 
 public class Field
 {
@@ -68,6 +24,9 @@ public class Field
 
     public string DefaultValue { get; set; }
 
+    /// <summary>
+    /// Variant types are Filled, Text, Outlined, 
+    /// </summary>
     [JsonConverter(typeof(VariantTypeConverter))]
     public Variant Variant { get; set; } = Variant.Filled;
 
@@ -81,7 +40,7 @@ public class Field
     
     public string AdornmentText { get; set; }
     
-    [JsonConverter(typeof(ColorConverter))]
+    [JsonConverter(typeof(ColorTypeConverter))]
     public Color AdornmentColor { get; set; }
 
     [JsonIgnore]
@@ -138,7 +97,7 @@ public class Field
 
     #endregion
     
-    #region Title Sepecific Settings
+    #region Title Specific Settings
     /// <summary>
     /// Indicates what style to be applied to a Text Title, eg. h1, h2, h3 etc.
     /// </summary>
@@ -149,7 +108,7 @@ public class Field
     /// justify-start | justify-center | justify-end | justify-space-between | justify-space-around
     /// <see cref="https://mudblazor.com/utilities/justify-content#applying-conditionally"/>
     /// </summary>
-    public string TileAlign { get; set; } = "justify-center";
+    public string TitleAlign { get; set; }
 
     #endregion
     
@@ -182,7 +141,7 @@ public class Field
 
     #region Alert Message
     /// <summary>
-    /// If a alert message with the Severity type indicator
+    /// If a alert message with the Severity type indicator. 'Normal', Error, Info, Success, Warning
     /// </summary>
     [JsonConverter(typeof(SeverityTypeConverter))]
     public Severity Severity { get; set; } = Severity.Normal;
@@ -191,59 +150,3 @@ public class Field
     
     
 }
-
-public class Footer
-{
-    public bool Enable { get; set; }
-    public string CustomClass { get; set; } = "d-flex justify-end flex-grow-1 gap-2";
-    
-    public bool EnableCancel { get; set; }
-    public string CancelText { get; set; }
-
-    [JsonConverter(typeof(ColorConverter))]
-    public Color CancelColor { get; set; } = Color.Default;
-    [JsonConverter(typeof(VariantTypeConverter))]
-
-    public Variant CancelVariant { get; set; } = Variant.Text;
-    
-    public bool EnableSubmit { get; set; }
-    public string SubmitText { get; set; }
-
-    [JsonConverter(typeof(ColorConverter))]
-    public Color SubmitColor { get; set; } = Color.Default;
-
-    [JsonConverter(typeof(VariantTypeConverter))]
-    public Variant SubmitVariant { get; set; } = Variant.Filled;
-
-    #region Event Handler
-
-    /// To override this we should pass it from the parent contorl
-    /// </summary>
-    [JsonIgnore]
-    public Func<Task?> Cancel_Handler { get; set; } = async () => { Console.WriteLine("'Cancel Event handler'. Default method trigger. Assign your method to perform Cancel."); };
-    [JsonIgnore]
-    public Func<EventArgs, Task?> Submit_Handler { get; set; } = async (e) => { Console.WriteLine("'Card Header Action' Default action Triggered. If you need to pass your method pass it from the parent controller."); };
-
-    #endregion
-}
-
-public class Header
-{
-    public bool Enable { get; set; }
-    public bool Divider { get; set; }
-    public Avatar Avatar { get; set; }
-    public Content Content { get; set; }
-    public CardActions CardAction { get; set; }
-    
-}
-
-
-public class GlobalBuilderSettings
-{
-    
-    public Dictionary<string, IBrowserFile> SelectedFile { get; set; } = new Dictionary<string, IBrowserFile>();
-
-    public bool IsDebug { get; set; } = false;
-}
-    
-

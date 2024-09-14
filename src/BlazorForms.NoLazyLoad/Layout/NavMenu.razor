@@ -2,10 +2,40 @@
             Rounded="true"
             Bordered="false"
             Margin="Margin.Normal" Color="Color.Tertiary">
-    <MudText Typo="Typo.h6" Class="px-4">Blazor Forms</MudText>
+    <MudText Typo="Typo.h6" Class="px-4">Dynamic Forms</MudText>
     <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Quickly usable Forms</MudText>
     <MudDivider Class="my-2" />
     <MudNavLink Href="/dynamic-help" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+
+    <MudNavGroup Title="Controls Form"
+                 Icon="@Icons.Material.Filled.ControlCamera" Expanded="false">
+        <MudNavLink Href="control/text" Icon="@Icons.Material.Filled.TextSnippet">TextBox</MudNavLink>
+        <MudNavLink Href="control/alerts" Icon="@Icons.Material.Filled.AddAlert">Alerts</MudNavLink>
+        <MudNavLink Href="control/title" Icon="@Icons.Material.Filled.Title">Titles</MudNavLink>
+        <MudNavLink Href="control/select" Icon="@Icons.Material.Filled.Checklist">Select</MudNavLink>
+        <MudNavLink Href="control/email" Icon="@Icons.Material.Filled.Email">Email</MudNavLink>
+
+        <MudNavLink Href="control/password" Icon="@Icons.Material.Filled.Password">Password</MudNavLink>
+        
+        <MudNavLink Href="control/multiline" Icon="@Icons.Material.Filled.LineWeight">Multiline</MudNavLink> 
+        
+        <MudNavLink Href="control/numeric" Icon="@Icons.Material.Filled.Numbers">Numeric</MudNavLink>
+        <MudNavLink Href="control/date-time" Icon="@Icons.Material.Filled.DateRange">DateTime</MudNavLink>
+        <MudNavLink Href="control/checkbox" Icon="@Icons.Material.Filled.CheckBox">Checkbox</MudNavLink>
+
+        <MudNavLink Href="control/radio" Icon="@Icons.Material.Filled.RadioButtonChecked">Radio</MudNavLink>
+        <MudNavLink Href="control/switch" Icon="@Icons.Material.Filled.SwitchLeft">Switch</MudNavLink>
+        <MudNavLink Href="control/auto-complete" Icon="@Icons.Material.Filled.ListAlt">Auto Complete</MudNavLink>
+        <MudNavLink Href="control/file-upload" Icon="@Icons.Material.Filled.AttachFile">File Upload</MudNavLink>
+        <MudNavLink Href="control/date" Icon="@Icons.Material.Filled.PunchClock">Date</MudNavLink>
+
+        <MudNavLink Href="control/time" Icon="@Icons.Material.Filled.AvTimer">Time</MudNavLink>
+        <MudNavLink Href="control/divider" Icon="@Icons.Material.Filled.LinearScale">Divider</MudNavLink>
+        <MudNavLink Href="control/field" Icon="@Icons.Material.Filled.TextFields">Field</MudNavLink>
+        <MudNavLink Href="control/image" Icon="@Icons.Material.Filled.Image">Image</MudNavLink>
+        
+    </MudNavGroup>
+    
     <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
     <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Receipt" Disabled="true">Billing</MudNavLink>
     <MudNavGroup Title="Authentication"

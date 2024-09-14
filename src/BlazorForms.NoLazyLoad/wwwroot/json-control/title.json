@@ -1,0 +1,94 @@
+﻿[
+  {
+    "Card": "Title",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Title Details",
+        "SubTitle": "Some subText for the panel to indicate/provide information"
+      },
+      "CardAction": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": false,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Save",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Next >>",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      
+      {
+        "FieldName": "NormalAlert",
+        "Label": "My Normal Text message.The reactor type is RBMK-1000",
+        "TitleAlign": "h6",
+        "Severity": "Normal",
+        "InputType": "Title",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+
+      {
+        "FieldName": "SuccessAlert",
+        "Label": "My Success Alert message.The reactor type is RBMK-1000",
+        "TitleAlign": "h2",
+        "Severity": "Success",
+        "InputType": "Title",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+
+      {
+        "FieldName": "WarningAlert",
+        "Label": "My Success Alert message.The reactor type is RBMK-1000",
+        "TitleAlign": "h1",
+        "Severity": "Warning",
+        "InputType": "Title",
+        "Variant": "Outlined",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      }
+    ]
+  }
+]

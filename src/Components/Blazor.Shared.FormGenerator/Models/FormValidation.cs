@@ -1,4 +1,4 @@
-﻿namespace Blazor.UI.FormGenerator.Builders;
+﻿namespace Blazor.Shared.FormGenerator.Models;
 
 public class FormValidation
 {

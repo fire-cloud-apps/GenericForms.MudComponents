@@ -1,4 +1,5 @@
-﻿namespace Blazor.UI.FormGenerator.Builders;
+﻿namespace Blazor.Shared.FormGenerator.Models;
+
 public class SelectionItems
 {
     public string Text { get; set; }

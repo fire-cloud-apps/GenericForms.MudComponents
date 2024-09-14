@@ -1,0 +1,89 @@
+﻿[
+  {
+    "Card": "file-upload",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 6,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AcUnit",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "File Upload Details",
+        "SubTitle": "Some subText for the panel to indicate/provide information"
+      },
+      "CardAction": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": false,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Validate",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+
+      {
+        "FieldName": "SimpleAttachments",
+        "Label": "Simple File Attachment",
+        "InputType": "FileUpload",
+        "FileAllowed": ".png, .jpg",
+        "IsMultiple": false,
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+      
+      {
+        "FieldName": "RequiredAttachments",
+        "Label": "Required File",
+        "InputType": "FileUpload",
+        "FileAllowed": ".pdf",
+        "IsMultiple": false,
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Input is Required."
+        }
+      }
+    ]
+  }
+]

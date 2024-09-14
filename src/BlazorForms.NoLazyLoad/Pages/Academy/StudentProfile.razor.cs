@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
-using Blazor.UI.FormGenerator.Builders;
+using Blazor.Shared.FormGenerator;
+using Blazor.Shared.FormGenerator.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
@@ -132,7 +133,6 @@ public partial class StudentProfile : ComponentBase
         _globalBuilderSettings.SelectedFile.Add(key, file);
     }
     #endregion
-    
     
     #region Guardian Details
     FormBuilder[] _formCourseHistoryBuilders;
