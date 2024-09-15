@@ -32,14 +32,14 @@
       }
     },
     "Footer": {
-      "Enable": false,
+      "Enable": true,
       "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
       "EnableCancel": true,
       "CancelText": "Save",
       "CancelColor": "Secondary",
       "CancelVariant": "Text",
       "EnableSubmit": true,
-      "SubmitText": "Next >>",
+      "SubmitText": "Save",
       "SubmitColor": "Primary",
       "SubmitVariant": "Filled"
     },
@@ -89,7 +89,32 @@
           "md": 6,
           "lg": 6
         }
+      },
+      
+      {
+        "FieldName": "SelectMultiples",
+        "Label": "Select Multiple",
+        "InputType": "Select",
+        "MultiSelect": true,
+        "SelectItemList": [
+          {"Text":"A+","Value":"A+"},
+          {"Text":"A","Value":"A"},
+          {"Text":"B","Value":"B"},
+          {"Text":"C","Value":"C"},
+          {"Text":"D","Value":"D"}
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
       }
+      
 
     ]
   }

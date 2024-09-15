@@ -141,7 +141,8 @@
                                                            Validation="@field.ValidateInput"
                                                            Required="@field.Validation.IsRequired"
                                                            RequiredError="@field.Validation.RequiredError"
-                                                           
+
+                                                           MultiSelection ="@field.MultiSelect"
                                                            ReadOnly="@field.IsReadOnly"
                                                            @bind-Value="_formData[field.FieldName]">
                                                     @foreach (var item in @field.SelectItemList)
@@ -151,6 +152,23 @@
                                                     }
                                                 </MudSelect>
                                                 break;
+                                           @* case InputFieldType.SelectMultiple:
+                                                <MudSelect T="string" Label="@field.Label" 
+                                                           Variant="@field.Variant"
+                                                           Validation="@field.ValidateInput"
+                                                           Required="@field.Validation.IsRequired"
+                                                           RequiredError="@field.Validation.RequiredError"
+                                                           
+                                                           ReadOnly="@field.IsReadOnly"
+                                                           MultiSelection="true"
+                                                           @bind-Value="_formData[field.FieldName]">
+                                                    @foreach (var item in @field.SelectItemList)
+                                                    {
+                                                        <MudSelectItem Value="item.Value">@item.Text</MudSelectItem>
+                                                        //Console.WriteLine($"Selected Value: {item.Value}, Text: {item.Text}");
+                                                    }
+                                                </MudSelect>
+                                                break; *@
                                             case InputFieldType.DateTime:
                                                 <MudTextField Format="s"
                                                               Validation="@field.ValidateInput"

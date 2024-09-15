@@ -95,6 +95,8 @@ public class Field
     /// </summary>
     public SelectionItems[] SelectItemList { get; set; }
 
+    public bool MultiSelect { get; set; } = false;
+
     #endregion
     
     #region Title Specific Settings

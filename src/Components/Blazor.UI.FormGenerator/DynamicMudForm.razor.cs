@@ -51,7 +51,8 @@ public partial class DynamicMudForm
     private Dictionary<string, decimal> _formDataNumeric = new Dictionary<string, decimal>();
     private Dictionary<string, bool> _formDataBool = new Dictionary<string, bool>();
     private Dictionary<string,  DateTime> _formDataDateTime = new Dictionary<string,  DateTime>();
-
+    
+    //private IEnumerable<string> options { get; set; } = new HashSet<string>() { "Alaska" };
     #endregion
     
     #region Initialization Method

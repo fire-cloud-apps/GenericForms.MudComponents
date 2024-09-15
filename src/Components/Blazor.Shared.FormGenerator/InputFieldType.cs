@@ -6,6 +6,7 @@ public enum InputFieldType
     Title,
     Text,
     Select,
+    SelectMultiple,
     Email,
     Password,
     MultiLine,

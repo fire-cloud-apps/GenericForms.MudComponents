@@ -30,7 +30,7 @@ public partial class TextControl : ComponentBase
         
         if (_formAllControlBuilders is not null)
         {
-            DynamicMudForm.AttachCard_EventAction(_formAllControlBuilders, cardTitle, TextBox_CardActionClick);
+            DynamicMudForm.AttachCard_EventAction(_formAllControlBuilders, cardTitle, CardActionClick);
             DynamicMudForm.AttachSubmitButton_EventAction(_formAllControlBuilders, cardTitle, SubmitButton_Click);
         }
 
@@ -39,7 +39,8 @@ public partial class TextControl : ComponentBase
 
     #endregion
 
-    public async Task TextBox_CardActionClick()
+    #region Event Mapper
+    public async Task CardActionClick()
     {
         Console.WriteLine("Triggered the TextBox Card Action Clicked.");
     }
@@ -54,4 +55,5 @@ public partial class TextControl : ComponentBase
            Console.WriteLine(_dynamicMudFrom.GetFormData());
         }
     }
+    #endregion
 }
