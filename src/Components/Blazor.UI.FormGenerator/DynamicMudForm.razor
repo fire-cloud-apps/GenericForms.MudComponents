@@ -123,6 +123,7 @@
                                                                  Label="@field.Label" Variant="@field.Variant"/>
                                                 break;
                                             case InputFieldType.Radio:
+                                                <MudText>@field.Label</MudText>
                                                 <MudRadioGroup @bind-Value="_formData[field.FieldName]"
                                                                Required="@field.Validation.IsRequired"
                                                                RequiredError="@field.Validation.RequiredError"
@@ -134,6 +135,38 @@
                                                         //Console.WriteLine($"Radio Value: {item.Value}, Text: {item.Text}");
                                                     }
                                                 </MudRadioGroup>
+                                                break;
+                                            case InputFieldType.ChipSet:
+                                                <MudChipSet T="string"
+                                                @bind-SelectedValue="@_formData[field.FieldName]" 
+                                                SelectionMode="@field.SelectionMode" 
+                                                CheckMark 
+                                                Variant="@field.Variant" 
+                                                Color="@field.Color">
+                                                    @foreach (var item in 
+                                                              @field.SelectItemList)
+                                                    {
+                                                        <MudChip T="string"
+                                                            Text="@item.Text"
+                                                            Value="@item.Value" />
+                                                    }
+                                                </MudChipSet>
+                                                break;
+                                            case InputFieldType.ChipSets:
+                                                <MudChipSet T="string"
+                                                            @bind-SelectedValues="@_formReadOnlySelectData[field.FieldName]" 
+                                                            SelectionMode="@field.SelectionMode" 
+                                                            CheckMark 
+                                                            Variant="@field.Variant" 
+                                                            Color="@field.Color">
+                                                    @foreach (var item in 
+                                                              @field.SelectItemList)
+                                                    {
+                                                        <MudChip T="string"
+                                                                 Text="@item.Text"
+                                                                 Value="@item.Value" />
+                                                    }
+                                                </MudChipSet>
                                                 break;
                                             case InputFieldType.Select:
                                                 <MudSelect T="string" Label="@field.Label" 
@@ -210,14 +243,15 @@
                                                               Validation="@field.ValidateInput"
                                                               ReadOnly="@field.IsReadOnly"
                                                               Label="@field.Label" Variant="@field.Variant" 
-                                                              InputType="@PasswordInput" 
+                                                              InputType="@_passwordInput" 
                                                               
                                                               Adornment="Adornment.End" 
-                                                              AdornmentIcon="@PasswordInputIcon" 
+                                                              AdornmentIcon="@_passwordInputIcon" 
                                                               OnAdornmentClick="PasswordToggle" 
                                                               AdornmentAriaLabel="Show Password"/>
                                                 break;
                                             case InputFieldType.CheckBox:
+                                                <MudText>@field.Label</MudText>
                                                 <MudCheckBox @bind-Value="_formDataBool[field.FieldName]"
                                                              Validation="@field.ValidateInput"
                                                              ReadOnly="@field.IsReadOnly"

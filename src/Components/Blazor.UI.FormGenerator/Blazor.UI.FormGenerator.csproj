@@ -5,9 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Dynamic Blazor Form using MudBlazor</Title>
-    <Version>0.0.1.3</Version>
-    <AssemblyVersion>0.0.1</AssemblyVersion>
-    <FileVersion>0.0.1</FileVersion>
+    <Version>0.0.1.5</Version>
+    <AssemblyVersion>1.0.1</AssemblyVersion>
+    <FileVersion>1.0.1</FileVersion>
     <Company>Fire Cloud</Company>
     <Description>Dynamic Blazor From used as a real-world solution where forms are generated dynamically from a JSON file or structured object. We’ll cover:
 
@@ -31,6 +31,7 @@ Select: Dropdown selection.
 FileUpload: For uploading files.
 CheckBox: A checkbox input.
 DateTime/Date: Date or date-time picker.
+ChipSet &amp; ChipSets Added
 
 We will see more in the next version.</PackageReleaseNotes>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
@@ -38,7 +39,6 @@ We will see more in the next version.</PackageReleaseNotes>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageProjectUrl>https://sr-firecloud.gitbook.io/generic-blazor-form-builder</PackageProjectUrl>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <Copyright>SR Ganesh Ram @2024</Copyright>

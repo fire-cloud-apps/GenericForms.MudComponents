@@ -7,50 +7,53 @@
     <MudDivider Class="my-2" />
     <MudNavLink Href="/dynamic-help" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
 
-    <MudNavGroup Title="Controls Form"
-                 Icon="@Icons.Material.Filled.ControlCamera" Expanded="false">
-        <MudNavLink Href="control/text" Icon="@Icons.Material.Filled.TextSnippet">TextBox</MudNavLink>
-        <MudNavLink Href="control/alerts" Icon="@Icons.Material.Filled.AddAlert">Alerts</MudNavLink>
-        <MudNavLink Href="control/title" Icon="@Icons.Material.Filled.Title">Titles</MudNavLink>
-        <MudNavLink Href="control/select" Icon="@Icons.Material.Filled.Checklist">Select</MudNavLink>
-        <MudNavLink Href="control/email" Icon="@Icons.Material.Filled.Email">Email</MudNavLink>
+    <MudNavGroup Title="Controls"
+                 Icon="@Icons.Material.Filled.ControlCamera" Expanded="true">
+        <MudNavGroup Icon="@Icons.Material.Filled.Input" Title="Input">
+            <MudNavLink Href="control/email" Icon="@Icons.Material.Filled.Email">Email</MudNavLink>
+            <MudNavLink Href="control/text" Icon="@Icons.Material.Filled.TextSnippet">TextBox</MudNavLink>
+            <MudNavLink Href="control/password" Icon="@Icons.Material.Filled.Password">Password</MudNavLink>
+            <MudNavLink Href="control/multiline" Icon="@Icons.Material.Filled.LineWeight">Multiline</MudNavLink>
+            <MudNavLink Href="control/numeric" Icon="@Icons.Material.Filled.Numbers">Numeric</MudNavLink>
+            <MudNavLink Href="control/date-time" Icon="@Icons.Material.Filled.DateRange">DateTime</MudNavLink>
+        </MudNavGroup>
 
-        <MudNavLink Href="control/password" Icon="@Icons.Material.Filled.Password">Password</MudNavLink>
-        
-        <MudNavLink Href="control/multiline" Icon="@Icons.Material.Filled.LineWeight">Multiline</MudNavLink> 
-        
-        <MudNavLink Href="control/numeric" Icon="@Icons.Material.Filled.Numbers">Numeric</MudNavLink>
-        <MudNavLink Href="control/date-time" Icon="@Icons.Material.Filled.DateRange">DateTime</MudNavLink>
-        <MudNavLink Href="control/checkbox" Icon="@Icons.Material.Filled.CheckBox">Checkbox</MudNavLink>
+        <MudNavGroup Title="Display" Icon="@Icons.Material.Filled.ViewDay" >
+            <MudNavLink Href="control/alerts" Icon="@Icons.Material.Filled.AddAlert">Alerts</MudNavLink>
+            <MudNavLink Href="control/title" Icon="@Icons.Material.Filled.Title">Titles</MudNavLink>
+            <MudNavLink Href="control/divider" Icon="@Icons.Material.Filled.LinearScale">Divider</MudNavLink>
+            <MudNavLink Href="control/field" Icon="@Icons.Material.Filled.TextFields">Field</MudNavLink>
+            <MudNavLink Href="control/image" Icon="@Icons.Material.Filled.Image">Image</MudNavLink>
+            <MudNavLink Href="control/date" Icon="@Icons.Material.Filled.PunchClock">Date</MudNavLink>
+            <MudNavLink Href="control/time" Icon="@Icons.Material.Filled.AvTimer">Time</MudNavLink>
+        </MudNavGroup>
 
-        <MudNavLink Href="control/radio" Icon="@Icons.Material.Filled.RadioButtonChecked">Radio</MudNavLink>
-        <MudNavLink Href="control/switch" Icon="@Icons.Material.Filled.SwitchLeft">Switch</MudNavLink>
-        <MudNavLink Href="control/auto-complete" Icon="@Icons.Material.Filled.ListAlt">Auto Complete</MudNavLink>
-        <MudNavLink Href="control/file-upload" Icon="@Icons.Material.Filled.AttachFile">File Upload</MudNavLink>
-        <MudNavLink Href="control/date" Icon="@Icons.Material.Filled.PunchClock">Date</MudNavLink>
+        <MudNavGroup Title="Selection" Icon="@Icons.Material.Filled.CheckCircle" >
+            <MudNavLink Href="control/chipset" Icon="@Icons.Material.Filled.Apps">Chipset</MudNavLink>
+            <MudNavLink Href="control/select" Icon="@Icons.Material.Filled.Checklist">Select</MudNavLink>
+            <MudNavLink Href="control/checkbox" Icon="@Icons.Material.Filled.CheckBox">Checkbox</MudNavLink>
+            <MudNavLink Href="control/radio" Icon="@Icons.Material.Filled.RadioButtonChecked">Radio</MudNavLink>
+            <MudNavLink Href="control/switch" Icon="@Icons.Material.Filled.SwitchLeft">Switch</MudNavLink>
+            <MudNavLink Href="control/auto-complete" Icon="@Icons.Material.Filled.ListAlt">Auto Complete</MudNavLink>
+        </MudNavGroup>
 
-        <MudNavLink Href="control/time" Icon="@Icons.Material.Filled.AvTimer">Time</MudNavLink>
-        <MudNavLink Href="control/divider" Icon="@Icons.Material.Filled.LinearScale">Divider</MudNavLink>
-        <MudNavLink Href="control/field" Icon="@Icons.Material.Filled.TextFields">Field</MudNavLink>
-        <MudNavLink Href="control/image" Icon="@Icons.Material.Filled.Image">Image</MudNavLink>
+        <MudNavGroup Title="Advanced" Icon="@Icons.Material.Filled.ArtTrack">
+            <MudNavLink Href="control/file-upload" Icon="@Icons.Material.Filled.AttachFile">File Upload</MudNavLink>
+        </MudNavGroup>
         
     </MudNavGroup>
     
     <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Storage">Servers</MudNavLink>
-    <MudNavLink Href="/weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Receipt" Disabled="true">Billing</MudNavLink>
     <MudNavGroup Title="Authentication"
                  Icon="@Icons.Material.Filled.Security" Expanded="false">
         <MudNavLink Href="authentication/login" Icon="@Icons.Material.Filled.Login">Login From</MudNavLink>
         <MudNavLink Href="authentication/social-network" Icon="@Icons.Material.Filled.SocialDistance">Social Network</MudNavLink>
     </MudNavGroup>
-    <MudNavGroup Title="Academy Form"
+    
+    <MudNavGroup Title="Form"
                  Icon="@Icons.Material.Filled.DynamicForm" Expanded="true">
         <MudNavLink Href="Form/Academy/StudentProfile" Icon="@Icons.Material.Filled.ContactPage">Student Profile</MudNavLink>
-
-    </MudNavGroup>
-    <MudNavGroup Title="General Form"
-                 Icon="@Icons.Material.Filled.DynamicForm" Expanded="true">
         <MudNavLink Href="forms/feedback" Icon="@Icons.Material.Filled.ContactPage">Feedback Form</MudNavLink>
-        
     </MudNavGroup>
+    
 </MudNavMenu>

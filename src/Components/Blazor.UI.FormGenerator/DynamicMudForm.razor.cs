@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using System.Text.Json;
 using Blazor.Shared.FormGenerator;
@@ -12,10 +13,9 @@ public partial class DynamicMudForm
     #region Parameters
 
     [Parameter]
-    public  FormBuilder[] FormBuilders { get; set; }
-    
-    [Parameter]
-    public GlobalBuilderSettings GlobalBuilderSettings { get; set; }
+    public required FormBuilder[] FormBuilders { get; set; }
+
+    [Parameter] public GlobalBuilderSettings GlobalBuilderSettings { get; set; } = new GlobalBuilderSettings();
 
     #endregion
 
@@ -44,15 +44,15 @@ public partial class DynamicMudForm
     
 
     #endregion
-   
+    
     #region Global Variables
     private Dictionary<string, string> _formData = new Dictionary<string, string>();
     private Dictionary<string, IList<SelectionItems>> _formItemArrayData = new Dictionary<string, IList<SelectionItems>>();
+    private Dictionary<string, IReadOnlyCollection<string>> _formReadOnlySelectData = new Dictionary<string, IReadOnlyCollection<string>>();
     private Dictionary<string, decimal> _formDataNumeric = new Dictionary<string, decimal>();
     private Dictionary<string, bool> _formDataBool = new Dictionary<string, bool>();
     private Dictionary<string,  DateTime> _formDataDateTime = new Dictionary<string,  DateTime>();
     
-    //private IEnumerable<string> options { get; set; } = new HashSet<string>() { "Alaska" };
     #endregion
     
     #region Initialization Method
@@ -60,51 +60,48 @@ public partial class DynamicMudForm
     protected override async Task OnInitializedAsync()
     {
         //@bind-Value="formData[field.FieldName]"
-        if (FormBuilders is not null)
+        foreach (var formInput in FormBuilders)
         {
-            foreach (var formInput in FormBuilders)
+            foreach (var field in formInput.Fields)
             {
-                foreach (var field in formInput.Fields)
+                switch (field.InputType)
                 {
-                    switch (field.InputType)
-                    {
-                        case InputFieldType.Text:
-                        case InputFieldType.MultiLine:
-                        case InputFieldType.Email:
-                        case InputFieldType.Password:
-                        case InputFieldType.Radio:
-                        case InputFieldType.Time:
-                        default:
-                            _formData.Add(field.FieldName, field.DefaultValue);
-                            Logger.LogInformation($"Form Field : {field.FieldName} - Added, {field.DefaultValue}");
-                            break;
-                        case InputFieldType.Select:
-                        case InputFieldType.AutoComplete:
-                            _formData.Add(field.FieldName, string.Empty);
-                            Logger.LogInformation($"Form Field : {field.FieldName} - Added, {field.DefaultValue}");
-                            break;
-                        case InputFieldType.FileUpload:
-                            _formData.Add(field.FieldName, string.Empty);
-                            Logger.LogInformation($"Form Field : {field.FieldName} - Added, {field.DefaultValue}");
-                            break;
-                        case InputFieldType.CheckBox:
-                        case InputFieldType.Switch:
-                            _formDataBool.Add(field.FieldName, false);
-                            Logger.LogInformation($"Form Field : {field.FieldName} - Added, {field.DefaultValue}");
-                            break;
-                        case InputFieldType.Numeric:                        
-                            _formDataNumeric.Add(field.FieldName, 0);
-                            Logger.LogInformation($"Form Field : {field.FieldName} - Added, {field.DefaultValue}");
-                            break;
-                        case InputFieldType.DateTime:
-                        case InputFieldType.Date:
-                            _formDataDateTime.Add(field.FieldName, DateTime.Now);
-                            Logger.LogInformation($"Form Field : {field.FieldName} - Added, {field.DefaultValue}");
-                            break;
-                    }
+                    case InputFieldType.Text:
+                    case InputFieldType.MultiLine:
+                    case InputFieldType.Email:
+                    case InputFieldType.Password:
+                    case InputFieldType.Radio:
+                    case InputFieldType.Time:
+                    default:
+                        _formData.Add(field.FieldName, field.DefaultValue);
+                        break;
+                    case InputFieldType.Select:
+                    case InputFieldType.AutoComplete:
+                        _formData.Add(field.FieldName, string.Empty);
+                        break;
+                    case InputFieldType.ChipSet:
+                        _formData.Add(field.FieldName, string.Empty);
+                        break;
+                    case InputFieldType.ChipSets:
+                        _formReadOnlySelectData.Add(field.FieldName, null);
+                        break;
+                    case InputFieldType.FileUpload:
+                        _formData.Add(field.FieldName, string.Empty);
+                        break;
+                    case InputFieldType.CheckBox:
+                    case InputFieldType.Switch:
+                        _formDataBool.Add(field.FieldName, false);
+                        break;
+                    case InputFieldType.Numeric:                        
+                        _formDataNumeric.Add(field.FieldName, 0);
+                        break;
+                    case InputFieldType.DateTime:
+                    case InputFieldType.Date:
+                        _formDataDateTime.Add(field.FieldName, DateTime.Now);
+                        break;
                 }
-
-                JsonSerializer.Serialize(formInput.Header);
+                
+                Logger.LogInformation("Form Field : {FieldFieldName} - Added, Default Value : {FieldDefaultValue}, Input Type : {FieldInputType}", field.FieldName, field.DefaultValue, field.InputType.ToString());
             }
         }
     }
@@ -123,7 +120,7 @@ public partial class DynamicMudForm
         // Merge DateTime data into formData
         foreach (var item in _formDataDateTime)
         {
-            _formData[item.Key] = item.Value.ToString();
+            _formData[item.Key] = item.Value.ToString(CultureInfo.CurrentCulture);
             //.ToString("o"); // Using the "o" (round-trip) format specifier for DateTime
         }
         // Merge Bool data into formData
@@ -131,7 +128,15 @@ public partial class DynamicMudForm
         {
             _formData[item.Key] = item.Value.ToString(); 
         }
-
+        // Merge IReadOnlyCollection<string> data into formDate 
+        foreach (var item in _formReadOnlySelectData)
+        {
+            //here is the problem.
+            var items = item.Value.ToArray();
+            var itemValue = string.Join(", ", items);
+            _formData[item.Key] = itemValue;
+        }
+        
         return JsonSerializer.Serialize(_formData);
     }
 
@@ -140,7 +145,7 @@ public partial class DynamicMudForm
     {
         bool result = false;
         //Identify Card Panel and attach 'Func<Task?>'
-        var detailPanel = formBuilders.Where(card => card.Card == cardName).FirstOrDefault();
+        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
         if (detailPanel is not null)
         {
             detailPanel.Header.CardAction.ActionTrigger = cardAction;
@@ -154,7 +159,7 @@ public partial class DynamicMudForm
     {
         bool result = false;
         //Identify Card Panel and attach ' Func<EventArgs, Task?> cardAction'
-        var detailPanel = formBuilders.Where(card => card.Card == cardName).FirstOrDefault();
+        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
         if (detailPanel is not null)
         {
             detailPanel.Footer.Submit_Handler = cardAction;
@@ -170,23 +175,24 @@ public partial class DynamicMudForm
     /// <param name="cardName"></param>
     /// <param name="fieldName"></param>
     /// <param name="eventAction"></param>
+    /// <param name="logger">logger object to log</param>
     /// <returns></returns>
     public static bool AutoComplete_EventAction(
         FormBuilder[] formBuilders, 
         string cardName, 
         string fieldName,
-        Func<string, CancellationToken, Task<IEnumerable<string>>> eventAction)
+        Func<string, CancellationToken, Task<IEnumerable<string>>> eventAction, ILogger<object>? logger = null)
     {
         bool result = false;
         //Identify Card Panel and attach ' Func<string, CancellationToken, Task<IEnumerable<string>>>'
-        var detailPanel = formBuilders.Where(card => card.Card == cardName).FirstOrDefault();
+        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
         if (detailPanel is not null)
         {
-            var autoCompleteField = detailPanel.Fields.Where(field => field.FieldName == fieldName).FirstOrDefault();
+            var autoCompleteField = detailPanel.Fields.FirstOrDefault(field => field.FieldName == fieldName);
             if (autoCompleteField is not null)
             {
                 autoCompleteField.AutoCompleteFunction =  eventAction;
-                Console.WriteLine($"{fieldName} - AutoComplete Attached.");
+                logger?.LogInformation("{FieldName} - AutoComplete Attached", fieldName);
             }
             result = true;
         }
@@ -198,17 +204,14 @@ public partial class DynamicMudForm
     {
         bool result = false;
         //Identify Card Panel and attach ' Func<IBrowserFile, Task?> eventAction '
-        var detailPanel = formBuilders.Where(card => card.Card == cardName).FirstOrDefault();
+        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
         if (detailPanel is not null)
         {
             var autoCompleteField = detailPanel.Fields.Where(field => field.FieldName == fieldName).FirstOrDefault();
             if (autoCompleteField is not null)
             {
                 autoCompleteField.FilesChangedFunction = eventAction;
-                if (logger is not null)
-                {
-                    logger.LogInformation($"FieldName: {fieldName} - Event: {eventAction.Method.Name} Attached.");
-                }
+                logger?.LogInformation("FieldName: {FieldName} - Event: {MethodName} Attached", fieldName, eventAction.Method.Name);
             }
             result = true;
         }
@@ -223,11 +226,6 @@ public partial class DynamicMudForm
 
     private async Task SubmitClick_HandlerAsync(EventArgs args, string jsonData)
     {
-        // Check if OnClick has a delegate (method assigned)
-        if (OnSubmit.Equals(EventCallback.Empty))
-        {
-            return; // No method assigned, do nothing
-        }
         Console.WriteLine("Component Form Submit Invoked.");
         await _form.Validate();
         
@@ -235,7 +233,7 @@ public partial class DynamicMudForm
         {
             //Snackbar.Add("Submitted!");
             GetFormData();//Merge all FormData Inputs into one.
-            string json = JsonSerializer.Serialize(_formData);
+            var json = JsonSerializer.Serialize(_formData);
             jsonData = json;
             // Handle the JSON, like sending it to an API
             Console.WriteLine($"Dynamic Form Data as JSON: {json}");
@@ -250,22 +248,6 @@ public partial class DynamicMudForm
         _form.ResetAsync();
     }
     
-    #endregion
-
-    #region AutoComplete Event Handler
-    
-    /// <summary>
-    /// Auto Complete Function List
-    /// <para name="string"> Argument 1 </para>
-    /// <para name="CancellationToken"> Argument 2 </para> 
-    /// </summary>
-    /*[Parameter]
-    public IDictionary<string, Func<string, CancellationToken, Task<IEnumerable<string>>>> AutoCompleteFuncList
-    {
-        get;
-        set;
-    } = new Dictionary<string, Func<string, CancellationToken, Task<IEnumerable<string>>>>();
-    */
     #endregion
 
     #region Valiation List
@@ -286,22 +268,22 @@ public partial class DynamicMudForm
     #endregion
     
     #region Toggle Password
-    bool isShow;
-    InputType PasswordInput = InputType.Password;
-    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+    bool _isShow;
+    InputType _passwordInput = InputType.Password;
+    string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
     
     void PasswordToggle()
     {
-        if (isShow)
+        if (_isShow)
         {
-            isShow = false;
-            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
-            PasswordInput = InputType.Password;
+            _isShow = false;
+            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
+            _passwordInput = InputType.Password;
         }
         else {
-            isShow = true;
-            PasswordInputIcon = Icons.Material.Filled.Visibility;
-            PasswordInput = InputType.Text;
+            _isShow = true;
+            _passwordInputIcon = Icons.Material.Filled.Visibility;
+            _passwordInput = InputType.Text;
         }
     }
     #endregion
@@ -309,12 +291,7 @@ public partial class DynamicMudForm
     #region File Upload
     [Parameter] 
     public IList<IBrowserFile> FileLists { get; set; } = new List<IBrowserFile>();
-    
     private int _fileCounter = 0;
-    //[Parameter]
-    //public Func<IReadOnlyList<IBrowserFile>, Task?> FileUpload { get; set; }
-    //[Parameter]
-    //public Dictionary<string, IBrowserFile> SelectedFile { get; set; } = new Dictionary<string, IBrowserFile>();
     [Parameter]
     public IDictionary<string, Func<IBrowserFile, Task?>> FileUploadFuncList
     {

@@ -149,6 +149,12 @@ public class Field
     public Severity Severity { get; set; } = Severity.Normal;
 
     #endregion
-    
-    
+
+    [JsonConverter(typeof(SelectionModeTypeConverter))]
+    public SelectionMode SelectionMode { get; set; } = SelectionMode.SingleSelection;
+
+    [JsonConverter(typeof(ColorTypeConverter))]
+    public Color Color { get; set; } = Color.Default;
+
+
 }
