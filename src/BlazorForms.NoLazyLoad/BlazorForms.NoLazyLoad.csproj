@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -39,6 +39,12 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Architecture\Activity.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update=".nojekyll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

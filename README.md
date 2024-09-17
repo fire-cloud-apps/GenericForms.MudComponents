@@ -9,14 +9,14 @@ Generic Forms in Blazor using MudBlazor, which supports Blazor Server App and WA
 
 ## Demo:
 
-[Click me to see the demo](https://blazor-dynamic-forms.netlify.app/)
+[Click me to see the demo](https://sr-ganesh-ram.github.io/dynamic-mudform/)
 
 
 ## Json Editor and Viewer tool
 
 * To install the package run the following command:
 
-**`NuGet\Install-Package Blazor.UI.FormGenerator -Version 0.0.1.3`**
+**`NuGet\Install-Package Blazor.UI.FormGenerator -Version 0.0.1.4`**
 or search **Blazor.UI.FormGenerator** in Nuget gallery.
 
 This will install `Blazor.UI.FormGenerator` in your project. You also need to add in **_Imports.razor**:
@@ -189,8 +189,7 @@ public partial class ContactForm
 
 ## If you like it please support:
 
-[Buy me a coffee](https://www.buymeacoffee.com/https://buymeacoffee.com/sr.ganeshram
-)
+[Buy me a coffee](https://buymeacoffee.com/sr.ganeshram)
 </br>
 <img src="bmc_qr.png" alt="drawing" width="120" heigh="120" />
 
