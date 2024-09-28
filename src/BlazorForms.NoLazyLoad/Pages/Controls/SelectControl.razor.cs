@@ -20,7 +20,7 @@ public partial class SelectControl : ComponentBase
     #region Control Details 
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
-    private string cardTitle = "Select";
+    private string cardTitle = "select";
     private async Task AllControlDetails()
     {
         #region All Controls

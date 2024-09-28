@@ -9,7 +9,7 @@ public class Avatar
     public bool Enable { get; set; }
     [JsonConverter(typeof(ColorTypeConverter))]
     public Color Color { get; set; }
-    [JsonConverter(typeof(IconTypeConverter))]
+    //[JsonConverter(typeof(IconTypeConverter))]
     public string Icon { get; set; }
     [JsonConverter(typeof(VariantTypeConverter))]
     public Variant Variant { get; set; }

@@ -20,7 +20,7 @@ public partial class DateTimeControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Date-Time";
+    private string cardTitle = "date-time";
     private async Task AllControlDetails()
     {
         #region All Controls

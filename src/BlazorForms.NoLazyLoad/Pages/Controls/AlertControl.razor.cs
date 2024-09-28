@@ -8,9 +8,8 @@ namespace BlazorForms.NoLazyLoad.Pages.Controls;
 
 public partial class AlertControl : ComponentBase
 {
-    private DynamicMudForm _dynamicMudFrom;
-    
     #region Initialization
+    private DynamicMudForm _dynamicMudFrom;
     protected override async Task OnInitializedAsync()
     {
         await AllControlDetails();
@@ -18,11 +17,11 @@ public partial class AlertControl : ComponentBase
 
     #endregion
     
-    #region Text Box Control Details 
+    #region Control Details 
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Alert";
+    private string cardTitle = "alert";
     private async Task AllControlDetails()
     {
         #region All Controls
@@ -31,8 +30,12 @@ public partial class AlertControl : ComponentBase
         jsonText = await Http.GetStringAsync($"json-control/{cardTitle}.json?v={DateTime.Now.Ticks}");
         if (_formAllControlBuilders is not null)
         {
-            DynamicMudForm.AttachCard_EventAction(_formAllControlBuilders, cardTitle, TextBox_CardActionClick);
+            DynamicMudForm.AttachCard_EventAction(_formAllControlBuilders, cardTitle, CardActionClick);
             DynamicMudForm.AttachSubmitButton_EventAction(_formAllControlBuilders, cardTitle, SubmitButton_Click);
+        }
+        else
+        {
+            Logger.LogWarning("_formAllControlBuilders is null");
         }
 
         #endregion
@@ -40,7 +43,8 @@ public partial class AlertControl : ComponentBase
 
     #endregion
 
-    public async Task TextBox_CardActionClick()
+    #region Event Attachments
+    public async Task CardActionClick()
     {
         Console.WriteLine("Triggered the TextBox Card Action Clicked.");
     }
@@ -48,11 +52,12 @@ public partial class AlertControl : ComponentBase
     public async Task SubmitButton_Click(EventArgs args)
     {
         Console.WriteLine("Submit Button Click");
-        _dynamicMudFrom.GetMudFrom() .Validate();
+        _dynamicMudFrom.GetMudFrom().Validate();
         if (_dynamicMudFrom.GetMudFrom().IsValid)
         {
             //Logger.LogWarning(_dynamicMudFrom.GetFormData());
             Console.WriteLine(_dynamicMudFrom.GetFormData());
         }
     }
+    #endregion
 }

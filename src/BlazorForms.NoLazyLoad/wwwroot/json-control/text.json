@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Card": "Text",
+    "Card": "text",
     "Elevation": 0,
     "Spacing": 2,
     "Outlined": true,
@@ -17,7 +17,7 @@
       "Avatar": {
         "Enable": true,
         "Color": "Primary",
-        "Icon": "Material.Filled.AcUnit",
+        "Icon": "material-symbols-outlined/edit_square",
         "Variant": "Outlined"
       },
       "Content": {
@@ -48,7 +48,7 @@
         "FieldName": "SimpleText",
         "Label": "Simple Input TextBox",
         "InputType": "Text",
-        "Adornment": "Start",
+        "Adornment": "None",
         "AdornmentIcon": "Material.Filled.HowToReg",
         "IsReadOnly": false,
         "DefaultValue": "",

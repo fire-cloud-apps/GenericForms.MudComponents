@@ -20,7 +20,7 @@ public partial class CheckBoxControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Checkbox";
+    private string cardTitle = "checkbox";
     private async Task AllControlDetails()
     {
         #region All Controls

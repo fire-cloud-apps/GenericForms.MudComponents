@@ -15,9 +15,9 @@
       "Enable": true,
       "Divider": true,
       "Avatar": {
-        "Enable": true,
         "Color": "Primary",
-        "Icon": "Material.Filled.AcUnit",
+        "Enable": true,
+        "Icon": "material-symbols-rounded/star",
         "Variant": "Outlined"
       },
       "Content": {
@@ -28,7 +28,7 @@
       "CardAction": {
         "Enable": true,
         "Color": "Primary",
-        "Icon": "Material.Filled.AddCircle"
+        "Icon": "material-symbols-rounded/bolt"
       }
     },
     "Footer": {
@@ -114,7 +114,7 @@
       "Avatar": {
         "Enable": true,
         "Color": "Primary",
-        "Icon": "Material.Filled.AcUnit",
+        "Icon": "material-symbols-outlined/dynamic_form",
         "Variant": "Outlined"
       },
       "Content": {
@@ -125,7 +125,7 @@
       "CardAction": {
         "Enable": false,
         "Color": "Primary",
-        "Icon": "Material.Filled.AddCircle"
+        "Icon": "material-symbols-rounded/key"
       }
     },
     "Footer": {
@@ -209,7 +209,7 @@
       "Avatar": {
         "Enable": true,
         "Color": "Primary",
-        "Icon": "Material.Filled.AcUnit",
+        "Icon": "material-symbols-outlined/info",
         "Variant": "Outlined"
       },
       "Content": {
@@ -220,7 +220,7 @@
       "CardAction": {
         "Enable": false,
         "Color": "Primary",
-        "Icon": "Material.Filled.AddCircle"
+        "Icon": "material-symbols-outlined/lightbulb_circle"
       }
     },
     "Footer": {

@@ -18,7 +18,7 @@ public partial class NumericControl : ComponentBase
     
     #region Control Details 
     FormBuilder[] _formAllControlBuilders;
-    private string cardTitle = "Numeric";
+    private string cardTitle = "numeric";
     private string jsonText = string.Empty;
     private async Task AllControlDetails()
     {

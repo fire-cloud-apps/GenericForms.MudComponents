@@ -1,86 +1,150 @@
 ﻿[
   {
-    "FieldName": "Name",
-    "Label": "Full Name",
-    "InputType": "Text",
-    "IsReadOnly": false,
-    "IsRequired": true,
-    "DefaultValue": "",
-    "Variant": "Text",
+    "Card": "feedback",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
     "GridPosition": {
       "xs": 12,
       "sm": 6,
-      "md": 6,
-      "lg": 6
+      "md": 12,
+      "lg": 12
     },
-    "Validation": {
-      "IsRequired": true,
-      "RequiredError": "Name is Required."
-    }
-  },
-  
-  {
-    "FieldName": "Email",
-    "Label": "Email",
-    "InputType": "Email",
-    "IsReadOnly": false,
-    "IsRequired": true,
-    "DefaultValue": "",
-    "Variant": "Text",
-    "GridPosition": {
-      "xs": 12,
-      "sm": 6,
-      "md": 6,
-      "lg": 6
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "material-symbols-outlined/forum",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Feedback Form",
+        "SubTitle": "Some subText for the panel to indicate/provide information"
+      },
+      "CardAction": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "material-symbols-outlined/ads_click"
+      }
     },
-    "Validation": {
-      "IsRequired": true,
-      "RequiredError": "Name is Required."
-    }
-  },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": false,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Validate",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      {
+        "FieldName": "Q1",
+        "Label": "How often do you use our app?",
+        "TitleAlign": "h6",
+        "Severity": "Normal",
+        "InputType": "Title",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+      {
+        "FieldName": "A1",
+        "Label": "",
+        "Placeholder": "Everyday/Once a week/bi-weekly",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "This is Required."
+        }
+      },
 
-  {
-    "FieldName": "Divider",
-    "Label": "Leave a Message",
-    "TextStyle": "h6",
-    "InputType": "Title",
-    "TileAlign": "justify-center",
-    "Variant": "Text",
-    "GridPosition": {
-      "xs": 12,
-      "sm": 12,
-      "md": 12,
-      "lg": 12
-    }
-  },
-  {
-    "FieldName": "Message",
-    "Label": "Leave a Message",
-    "InputType": "MultiLine",
-    "IsReadOnly": false,
-    "IsRequired": true,
-    "DefaultValue": "Enter some message, what which we receive.",
-    "Variant": "Text",
-    "Line": 5,
-    "GridPosition": {
-      "xs": 12,
-      "sm": 12,
-      "md": 12,
-      "lg": 12
-    }
-  },
-  {
-    "FieldName": "Alert",
-    "Label": "Register yourself and provide your feedback. It is valuble for us.",
-    "InputType": "Alert",
-    "TileAlign": "justify-end",
-    "Severity": "Normal",
-    "Variant": "Text",
-    "GridPosition": {
-      "xs": 12,
-      "sm": 12,
-      "md": 12,
-      "lg": 12
-    }
+      {
+        "FieldName": "Q2",
+        "Label": "What is the motivation to use our app?",
+        "TitleAlign": "h6",
+        "Severity": "Normal",
+        "InputType": "Title",
+        "Variant": "Filled",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+      {
+        "FieldName": "A2",
+        "Label": "",
+        "Placeholder": "What problem does it solve for you?",
+        "Line": 5,
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "This is Required."
+        }
+      },
+
+      {
+        "FieldName": "Ch1",
+        "Label": "Receive personal follow-up for your feedback?",
+        "Placeholder": "",
+        "InputType": "CheckBox",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+
+      {
+        "FieldName": "Alert",
+        "Label": "Register yourself and provide your feedback. It is valuble for us.",
+        "InputType": "Alert",
+        "TileAlign": "justify-end",
+        "Severity": "Normal",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      }
+    ]
   }
 ]

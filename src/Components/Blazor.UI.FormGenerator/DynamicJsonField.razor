@@ -1,0 +1,94 @@
+﻿
+<MudCard>
+    <MudCardContent>
+        <MudGrid Spacing="2">
+            <MudItem md="6" lg="6" sm="12" xs="12">
+                <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+                    @if (_field is not null)
+                    {
+                        <MudStack Row="false" Spacing="2">
+                            <MudTextField Placeholder="Field 'Label'"
+                                          Label="Label" @bind-Value="_field.Label">
+                            </MudTextField>
+                            <MudTextField Placeholder="Field 'Name'"
+                                          Label="Field Name or Model Name" 
+                                          @bind-Value="_field.FieldName">
+                            </MudTextField>
+                            <MudSelect @bind-Value="_field.Adornment" Label="Select Adornment"  AdornmentColor="Color.Secondary">
+                                @foreach (Adornment item in Enum.GetValues(typeof(Adornment)))
+                                {
+                                    <MudSelectItem Value="@item">@item</MudSelectItem>
+                                }
+                            </MudSelect>
+                            <MudTextField Placeholder="Field 'AdornmentText'"
+                                          Label="Adornment Text"
+                                          @bind-Value="_field.AdornmentText">
+                            </MudTextField>
+                            <MudSelect @bind-Value="_field.AdornmentColor" Label="Select Adornment Color"  AdornmentColor="Color.Secondary">
+                                @foreach (Color item in Enum.GetValues(typeof(Color)))
+                                {
+                                    <MudSelectItem Value="@item">@item</MudSelectItem>
+                                }
+                            </MudSelect>
+                            <MudTextField Placeholder="Field eg. material-symbols-outlined/dns"
+                                          Label="Adornment Icon"
+                                          @bind-Value="_field.AdornmentIcon">
+                            </MudTextField>
+                            
+                            <MudSelect @bind-Value="_field.Variant" Label="Select Variant"  AdornmentColor="Color.Info">
+                                @foreach (Variant item in Enum.GetValues(typeof(Variant)))
+                                {
+                                    <MudSelectItem Value="@item">@item</MudSelectItem>
+                                }
+                            </MudSelect>
+
+                            <MudTextField Placeholder="Mask Value., eg. +91-000-000-0000"
+                                          Label="Pattern Mask"
+                                          @bind-Value="_field.PatternMask">
+                            </MudTextField>
+                            <MudCheckBox @bind-Value="_field.IsReadOnly" 
+                                         Label="Is Read Only"></MudCheckBox>
+                            
+                            <MudCheckBox @bind-Value="_field.Validation.IsRequired" 
+                                         Label="Is Required"></MudCheckBox>
+                            <MudTextField Placeholder="Field 'Is Required Error Message'"
+                                          Label="Required Error Message"
+                                          @bind-Value="_field.Validation.RequiredError">
+                            </MudTextField>
+                            
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Primary" OnClick="SubmitClick_HandlerAsync">
+                                Get JSON
+                            </MudButton>
+                        </MudStack>
+                    }
+                </MudForm>
+            </MudItem>
+            <MudItem md="6" lg="6" sm="12" xs="12">
+                <MudStack Spacing="3">
+                    <MudTextField Label="@_field.Label"
+                                  @bind-Value="@_field.DefaultValue"
+
+                                  Adornment="@_field.Adornment"
+                                  AdornmentColor="@_field.AdornmentColor"
+                                  AdornmentText="@_field.AdornmentText"
+                                  AdornmentIcon="@_field.AdornmentIcon"
+
+                                  Mask="@(_field.PatternMask != null ? new PatternMask(_field.PatternMask) : null)"
+
+                                  Variant="@_field.Variant"
+                                  ReadOnly="@_field.IsReadOnly"
+                                  Required="@_field.Validation.IsRequired"
+                                  RequiredError="@_field.Validation.RequiredError">
+
+                    </MudTextField>
+                    <MudTextField Lines="10" @bind-Value="_fieldOutput" />
+                </MudStack>
+               
+            </MudItem>
+            <MudItem md="12" lg="12" sm="12" xs="12">
+                
+            </MudItem>
+        </MudGrid>
+    </MudCardContent>
+</MudCard>

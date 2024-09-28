@@ -1,0 +1,177 @@
+﻿[
+  {
+    "Card": "create",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "material-symbols-outlined/school",
+        "Variant": "Outlined"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Institution Configuration",
+        "SubTitle": "School Information"
+      },
+      "CardAction": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "Material.Filled.AddCircle"
+      }
+    },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": false,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Save",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+    "Fields": [
+      
+      {
+        "FieldName": "Name",
+        "Label": "School Name",
+        "InputType": "Text",
+        "Adornment": "None",
+        "AdornmentIcon": "Material.Filled.HowToReg",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "School Name is Required."
+        }
+      },
+
+      {
+        "FieldName": "RegId",
+        "Label": "Registration ID",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Reqistation Id is Required."
+        }
+      },
+      
+      {
+        "FieldName": "FoundedOn",
+        "Label": "Founded ID",
+        "InputType": "DateTime",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": false,
+          "RequiredError": "Founded On is Required."
+        }
+      },
+      
+      {
+        "FieldName": "Address",
+        "Label": "Full School Address",
+        "InputType": "MultiLine",
+        "Line": 5,
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+
+      {
+        "FieldName": "Mobile",
+        "Label": "Mobile No",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Phone Number is Required."
+        }
+      },
+
+      {
+        "FieldName": "SecondaryMobile",
+        "Label": "Phone No",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+
+      {
+        "FieldName": "Email",
+        "Label": "Email",
+        "InputType": "Email",
+        "IsReadOnly": false,
+        "DefaultValue": "",
+        "Variant": "Text",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        },
+        "Validation": {
+          "IsRequired": true,
+          "RequiredError": "Phone Number is Required."
+        }
+      }
+    ]
+  }
+]

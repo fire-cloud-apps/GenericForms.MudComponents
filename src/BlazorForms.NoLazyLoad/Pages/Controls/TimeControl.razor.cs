@@ -20,7 +20,7 @@ public partial class TimeControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Time";
+    private string cardTitle = "time";
     private async Task AllControlDetails()
     {
         #region All Controls

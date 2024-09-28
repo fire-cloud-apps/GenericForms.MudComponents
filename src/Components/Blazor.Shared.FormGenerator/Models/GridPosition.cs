@@ -2,8 +2,8 @@
 
 public class GridPosition
 {
-    public int xs { get; set; }
-    public int sm { get; set; }
-    public int md { get; set; }
-    public int lg { get; set; }
+    public int xs { get; set; } = 12;
+    public int sm { get; set; } = 12;
+    public int md { get; set; } = 4;
+    public int lg { get; set; } = 4;
 }

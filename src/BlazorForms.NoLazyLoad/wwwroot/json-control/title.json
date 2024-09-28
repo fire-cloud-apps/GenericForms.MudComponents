@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Card": "Title",
+    "Card": "title",
     "Elevation": 0,
     "Spacing": 2,
     "Outlined": true,
@@ -17,7 +17,7 @@
       "Avatar": {
         "Enable": true,
         "Color": "Primary",
-        "Icon": "Material.Filled.AcUnit",
+        "Icon": "material-symbols-outlined/menu_book",
         "Variant": "Outlined"
       },
       "Content": {

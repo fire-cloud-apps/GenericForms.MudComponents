@@ -20,7 +20,7 @@ public partial class DividerControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Divider";
+    private string cardTitle = "divider";
     private async Task AllControlDetails()
     {
         #region All Controls

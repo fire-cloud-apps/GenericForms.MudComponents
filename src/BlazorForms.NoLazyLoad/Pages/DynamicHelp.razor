@@ -6,6 +6,96 @@
 
 @if (_formAllControlBuilders is not null)
 {
+    <!-- 
     <DynamicMudForm @ref="_dynamicMudFrom" FormBuilders="_formAllControlBuilders"/>
-    
+    -->
+    <!-- Ref: Restaurant POS https://resto.codehas.net/admin/service-tables -->
 }
+
+<MudPaper Class="ma-4 pa-4" Elevation="4" Width="260px;">
+    <MudStack Row="true">
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+    </MudStack>
+    <MudPaper Class="d-flex justify-center flex-grow-1 gap-4" Elevation="16" Outlined="false" Height="50px;">
+        
+    </MudPaper>
+    <MudStack Row="true">
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                     UncheckedColor="Color.Default"
+                     Color="Color.Primary"
+                     CheckedIcon="@Icons.Material.Filled.Chair"
+                     UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+    </MudStack>
+</MudPaper>
+
+<MudPaper Class="ma-4 pa-4" Elevation="4" Width="200px;">
+    <MudStack Row="true">
+        <MudStack Row="false">
+            <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                         UncheckedColor="Color.Default"
+                         Color="Color.Primary"
+                         CheckedIcon="@Icons.Material.Filled.Chair"
+                         UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+            <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                         UncheckedColor="Color.Default"
+                         Color="Color.Primary"
+                         CheckedIcon="@Icons.Material.Filled.Chair"
+                         UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        </MudStack>
+        <MudPaper Elevation="8" Outlined="false" Width="60px;">
+        </MudPaper>
+        <MudStack Row="false">
+            <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                         UncheckedColor="Color.Default"
+                         Color="Color.Primary"
+                         CheckedIcon="@Icons.Material.Filled.Chair"
+                         UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+            <MudCheckBox @bind-Value="seat1" Dense="@dense"
+                         UncheckedColor="Color.Default"
+                         Color="Color.Primary"
+                         CheckedIcon="@Icons.Material.Filled.Chair"
+                         UncheckedIcon="@Icons.Material.Outlined.Chair"></MudCheckBox>
+        </MudStack>
+    </MudStack>
+</MudPaper>
+
+@code
+{
+    bool dense = true;
+    bool seat1 { get; set; }
+}
+

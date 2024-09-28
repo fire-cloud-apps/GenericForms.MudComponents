@@ -20,7 +20,7 @@ public partial class ChipSetControl : ComponentBase
     #region Control Details 
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
-    private string cardTitle = "Chipset";
+    private string cardTitle = "chipset";
     private async Task AllControlDetails()
     {
         #region All Controls

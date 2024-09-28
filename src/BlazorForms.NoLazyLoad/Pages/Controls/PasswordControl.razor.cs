@@ -18,7 +18,7 @@ public partial class PasswordControl : ComponentBase
     
     #region Control Details 
     FormBuilder[] _formAllControlBuilders;
-    private string cardTitle = "Password";
+    private string cardTitle = "password";
     private string jsonText = string.Empty;
     private async Task AllControlDetails()
     {

@@ -21,7 +21,7 @@ public partial class ImageControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Image";
+    private string cardTitle = "image";
     private async Task AllControlDetails()
     {
         #region All Controls

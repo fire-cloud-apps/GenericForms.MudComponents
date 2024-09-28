@@ -60,6 +60,11 @@ public partial class DynamicMudForm
     protected override async Task OnInitializedAsync()
     {
         //@bind-Value="formData[field.FieldName]"
+        if(FormBuilders is null)
+        {
+            Logger.LogWarning("FormBuilders Property is null");
+            return;
+        }
         foreach (var formInput in FormBuilders)
         {
             foreach (var field in formInput.Fields)
@@ -233,13 +238,16 @@ public partial class DynamicMudForm
         {
             //Snackbar.Add("Submitted!");
             GetFormData();//Merge all FormData Inputs into one.
-            var json = JsonSerializer.Serialize(_formData);
-            jsonData = json;
+            var option = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+            var json = JsonSerializer.Serialize(_formData, option);
             // Handle the JSON, like sending it to an API
             Console.WriteLine($"Dynamic Form Data as JSON: {json}");
         }
         
-        await OnSubmit.InvokeAsync(jsonData);
+       // await OnSubmit.InvokeAsync(jsonData);
     }
 
     private async Task Cancel()

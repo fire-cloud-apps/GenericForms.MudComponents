@@ -20,7 +20,7 @@ public partial class FieldControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Field";
+    private string cardTitle = "field";
     private async Task AllControlDetails()
     {
         #region All Controls

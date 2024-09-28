@@ -21,7 +21,7 @@ public partial class TextControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Text";
+    private string cardTitle = "text";
     private async Task AllControlDetails()
     {
         #region All Controls

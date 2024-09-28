@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Card": "Numeric",
+    "Card": "numeric",
     "Elevation": 0,
     "Spacing": 2,
     "Outlined": true,

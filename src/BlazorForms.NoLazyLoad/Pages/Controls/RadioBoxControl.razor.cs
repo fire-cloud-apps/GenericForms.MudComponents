@@ -21,7 +21,7 @@ public partial class RadioBoxControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Radiobox";
+    private string cardTitle = "radiobox";
     private async Task AllControlDetails()
     {
         #region All Controls

@@ -21,7 +21,7 @@ public partial class MultilineControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Multiline";
+    private string cardTitle = "multiline";
     private async Task AllControlDetails()
     {
         #region All Controls

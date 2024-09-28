@@ -74,15 +74,16 @@
                                             case InputFieldType.Text:
                                             default:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              Mask="@(field.PatternMask != null ? new PatternMask(field.PatternMask) : null)"
                                                               Validation="@field.ValidateInput"
-                                                              Label="@field.Label"
-
+                                                              Label="@field.Label"                                                              
+                                                              Mask="@(field.PatternMask != null ? new PatternMask(field.PatternMask) : null)"
+                                                              Placeholder="@field.Placeholder"
                                                               Adornment="@field.Adornment"
                                                               AdornmentText="@field.AdornmentText"
                                                               AdornmentColor="@field.AdornmentColor"
                                                               AdornmentIcon="@field.AdornmentIcon"
 
+                                                              MaxLength="@field.MaxLength"
                                                               ReadOnly="@field.IsReadOnly"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
@@ -92,6 +93,9 @@
                                             case InputFieldType.MultiLine:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
                                                               ReadOnly="@field.IsReadOnly"
+                                                              Placeholder="@field.Placeholder"
+                                                              MaxLength="@field.MaxLength"
+
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               Validation="@field.ValidateInput"
@@ -101,7 +105,10 @@
                                             case InputFieldType.Email:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
                                                               InputType="InputType.Email"
+                                                              Placeholder="@field.Placeholder"
                                                               ReadOnly="@field.IsReadOnly"
+                                                              MaxLength="@field.MaxLength"
+
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })"
@@ -116,7 +123,9 @@
                                                 break;
                                             case InputFieldType.Numeric:
                                                 <MudNumericField @bind-Value="_formDataNumeric[field.FieldName]"
+                                                                 Placeholder="@field.Placeholder"
                                                                  ReadOnly="@field.IsReadOnly"
+                                                                 MaxLength="@field.MaxLength"
                                                                  Required="@field.Validation.IsRequired"
                                                                  RequiredError="@field.Validation.RequiredError"
                                                                  Validation="@field.ValidateInput"
@@ -171,6 +180,7 @@
                                             case InputFieldType.Select:
                                                 <MudSelect T="string" Label="@field.Label" 
                                                            Variant="@field.Variant"
+                                                           Placeholder="@field.Placeholder"
                                                            Validation="@field.ValidateInput"
                                                            Required="@field.Validation.IsRequired"
                                                            RequiredError="@field.Validation.RequiredError"
@@ -185,25 +195,10 @@
                                                     }
                                                 </MudSelect>
                                                 break;
-                                           @* case InputFieldType.SelectMultiple:
-                                                <MudSelect T="string" Label="@field.Label" 
-                                                           Variant="@field.Variant"
-                                                           Validation="@field.ValidateInput"
-                                                           Required="@field.Validation.IsRequired"
-                                                           RequiredError="@field.Validation.RequiredError"
-                                                           
-                                                           ReadOnly="@field.IsReadOnly"
-                                                           MultiSelection="true"
-                                                           @bind-Value="_formData[field.FieldName]">
-                                                    @foreach (var item in @field.SelectItemList)
-                                                    {
-                                                        <MudSelectItem Value="item.Value">@item.Text</MudSelectItem>
-                                                        //Console.WriteLine($"Selected Value: {item.Value}, Text: {item.Text}");
-                                                    }
-                                                </MudSelect>
-                                                break; *@
+                                          
                                             case InputFieldType.DateTime:
                                                 <MudTextField Format="s"
+                                                              Placeholder="@field.Placeholder"
                                                               Validation="@field.ValidateInput"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
@@ -219,6 +214,7 @@
                                                 break;
                                             case InputFieldType.Date:
                                                 <MudTextField Format="yyyy-MM-dd" ReadOnly="@field.IsReadOnly"
+                                                              Placeholder="@field.Placeholder"
                                                               Validation="@field.ValidateInput"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
@@ -230,6 +226,7 @@
                                                 break;
                                             case InputFieldType.Time:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
+                                                              Placeholder="@field.Placeholder"
                                                               Validation="@field.ValidateInput"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
@@ -238,12 +235,15 @@
                                                 break;
                                             case InputFieldType.Password:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
+                                                              Placeholder="@field.Placeholder"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               Validation="@field.ValidateInput"
                                                               ReadOnly="@field.IsReadOnly"
                                                               Label="@field.Label" Variant="@field.Variant" 
-                                                              InputType="@_passwordInput" 
+                                                              InputType="@_passwordInput"
+                                                              MaxLength="@field.MaxLength"
+                                                              
                                                               
                                                               Adornment="Adornment.End" 
                                                               AdornmentIcon="@_passwordInputIcon" 
@@ -251,7 +251,11 @@
                                                               AdornmentAriaLabel="Show Password"/>
                                                 break;
                                             case InputFieldType.CheckBox:
-                                                <MudText>@field.Label</MudText>
+                                                @if (!string.IsNullOrEmpty(field.Placeholder))
+                                                {
+                                                    <MudText>@field.Placeholder</MudText>
+                                                }
+                                                
                                                 <MudCheckBox @bind-Value="_formDataBool[field.FieldName]"
                                                              Validation="@field.ValidateInput"
                                                              ReadOnly="@field.IsReadOnly"
@@ -263,7 +267,6 @@
                                                 <MudSwitch @bind-Value="_formDataBool[field.FieldName]"
                                                            Validation="@field.ValidateInput"
                                                            Label="@field.Label"
-                                                           
                                                            ReadOnly="@field.IsReadOnly"
                                                            Required="@field.Validation.IsRequired"
                                                            RequiredError="@field.Validation.RequiredError"
@@ -273,6 +276,7 @@
                                                 <MudAutocomplete T="string"
                                                                  @bind-Value="_formData[field.FieldName]"
                                                                  Validation="@field.ValidateInput"
+                                                                 Placeholder="@field.Placeholder"
                                                                  
                                                                  Required="@field.Validation.IsRequired"
                                                                  RequiredError="@field.Validation.RequiredError"
@@ -302,7 +306,6 @@
                                                     </MudFileUpload> *@
                                                 <MudFileUpload T="IBrowserFile"
                                                                Validation="@field.ValidateInput"
-                                                               
                                                                Required="@field.Validation.IsRequired"
                                                                RequiredError="@field.Validation.RequiredError"
                                                                
@@ -335,7 +338,7 @@
                                                 
                                                 break;
                                             case InputFieldType.Field:
-                                                <MudField Label="@field.Label" Variant="@field.Variant">
+                                                <MudField Label="@field.Label" Variant="@field.Variant" >
                                                     @field.Label
                                                 </MudField>
                                                 break;

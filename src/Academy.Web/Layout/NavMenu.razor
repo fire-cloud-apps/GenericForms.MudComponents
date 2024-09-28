@@ -1,0 +1,29 @@
+﻿<MudNavMenu Class="mud-width-full pa-2"
+            Rounded="true"
+            Bordered="false"
+            Margin="Margin.Normal" Color="Color.Tertiary">
+    <MudText Typo="Typo.h6" Class="px-4">Dynamic Forms V1.0.3</MudText>
+    <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">Quickly usable Forms</MudText>
+    <MudDivider Class="my-2" />
+    <MudNavLink Href="/dynamic-help" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Dashboard">Dashboard</MudNavLink>
+
+    <MudNavGroup Title="Settings"
+                 Icon="@Icons.Material.Filled.Settings" Expanded="false">
+        <MudNavGroup Icon="material-symbols-outlined/school" Title="School">
+            <MudNavLink Href="settings/school/create" Icon="material-symbols-outlined/polyline">Create</MudNavLink>
+            <MudNavLink Href="control/text" Icon="@Icons.Material.Filled.TextSnippet">TextBox</MudNavLink>
+            <MudNavLink Href="control/password" Icon="@Icons.Material.Filled.Password">Password</MudNavLink>
+            <MudNavLink Href="control/multiline" Icon="@Icons.Material.Filled.LineWeight">Multiline</MudNavLink>
+            <MudNavLink Href="control/numeric" Icon="@Icons.Material.Filled.Numbers">Numeric</MudNavLink>
+            <MudNavLink Href="control/date-time" Icon="@Icons.Material.Filled.DateRange">DateTime</MudNavLink>
+        </MudNavGroup>
+
+
+        
+    </MudNavGroup>
+    
+    <MudNavLink Href="dynamic/field-builder" Icon="@Icons.Material.Filled.Code">
+        Log Off
+    </MudNavLink>
+</MudNavMenu>
+

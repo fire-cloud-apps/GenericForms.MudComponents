@@ -16,11 +16,11 @@ public partial class DateControl : ComponentBase
 
     #endregion
     
-    #region Text Box Control Details 
+    #region Control Details 
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Date";
+    private string cardTitle = "date";
     private async Task AllControlDetails()
     {
         #region All Controls

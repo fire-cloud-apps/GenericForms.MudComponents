@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Dynamic Blazor Form using MudBlazor</Title>
     <Version>0.0.1.5</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
+    <AssemblyVersion>1.0.1.5</AssemblyVersion>
+    <FileVersion>1.0.1.5</FileVersion>
     <Company>Fire Cloud</Company>
     <Description>Dynamic Blazor From used as a real-world solution where forms are generated dynamically from a JSON file or structured object. We’ll cover:
 

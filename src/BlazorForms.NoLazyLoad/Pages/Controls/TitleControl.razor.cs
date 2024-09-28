@@ -20,7 +20,7 @@ public partial class TitleControl : ComponentBase
     #region Control Details 
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
-    private string cardTitle = "Title";
+    private string cardTitle = "title";
     private async Task AllControlDetails()
     {
         #region All Controls

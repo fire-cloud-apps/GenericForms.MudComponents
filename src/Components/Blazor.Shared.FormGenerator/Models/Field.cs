@@ -6,10 +6,21 @@ using Color = MudBlazor.Color;
 
 namespace Blazor.Shared.FormGenerator.Models;
 
-public class Field
+public class Field 
 {
+    #region Base Property
+
+    /// <summary>
+    /// FieldName is also called as 'Model' Name or property or entity attribute
+    /// </summary>
     public string FieldName { get; set; }
+    /// <summary>
+    /// An display name for the Controls
+    /// </summary>
     public string Label { get; set; }
+
+    #endregion
+    
     /// <summary>
     /// The text field will apply formatting rules or input restrictions on-the-fly while the user is typing. eg."0000 0000 0000 0000", "+(91)-(00000)-(00000)". etc.
     /// </summary>
@@ -32,11 +43,20 @@ public class Field
 
     #region Text Input Specific Property
 
-    [JsonConverter(typeof(IconTypeConverter))]
+    /// <summary>
+    /// Maximum length a text content can accept.
+    /// </summary>
+    public int MaxLength { get; set; }
+
+    /// <summary>
+    /// Control Placeholder text
+    /// </summary>
+    public string Placeholder { get; set; }
+    //[JsonConverter(typeof(IconTypeConverter))]
     public string AdornmentIcon { get; set; }
 
     [JsonConverter(typeof(AdornmentTypeConverter))]
-    public Adornment Adornment { get; set; } = Adornment.Start;
+    public Adornment Adornment { get; set; } = Adornment.None;
     
     public string AdornmentText { get; set; }
     

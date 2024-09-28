@@ -22,7 +22,7 @@ public partial class SwitchControl : ComponentBase
     FormBuilder[] _formAllControlBuilders;
     private string jsonText = string.Empty;
     
-    private string cardTitle = "Switch";
+    private string cardTitle = "switch";
     private async Task AllControlDetails()
     {
         #region All Controls

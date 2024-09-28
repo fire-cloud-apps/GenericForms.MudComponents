@@ -1,0 +1,18 @@
+﻿@page "/forms/feedback"
+
+<PageTitle>Dynamic - Feedback Form</PageTitle>
+
+
+@inject HttpClient Http
+@inject ILogger<Feedback> Logger
+
+@if (_formAllControlBuilders is not null)
+{
+    <DynamicMudForm @ref="_dynamicMudFrom" FormBuilders="_formAllControlBuilders"/>
+    <MudPaper Class="ma-4 pa-4" Elevation="4">
+        <MudTextField Label="JSON Control data" ReadOnly="true"
+                      Variant="Variant.Filled" Lines="80"
+                      @bind-Value="@jsonText"  />
+    </MudPaper>
+    
+}
