@@ -27,7 +27,7 @@
             var nameField = Panel1.Fields.Where(field => field.FieldName == "Name").FirstOrDefault();
             if (nameField is not null)
             {
-                nameField.ValidateInput = MaxCharacters;
+                nameField.Validation.Method = MaxCharacters;
             }
         }
     }

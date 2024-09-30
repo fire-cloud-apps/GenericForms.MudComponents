@@ -44,10 +44,19 @@ public class Field
     #region Text Input Specific Property
 
     /// <summary>
-    /// Maximum length a text content can accept.
+    /// Maximum length a text content can accept. The maximum number of characters allowed. Defaults to 524288. This value is typically set to a maximum length such as the size of a database column the value will be persisted to.
     /// </summary>
-    public int MaxLength { get; set; }
+    public int MaxLength { get; set; } = 524288;
 
+    /// <summary>
+    /// The text displayed below the text field. This property is typically used to help the user understand what kind of input is allowed.The HelperTextOnFocus property controls when this text is visible.
+    /// </summary>
+    public string HelperText { get; set; }
+
+    /// <summary>
+    /// Displays the HelperText only when this input has focus. Defaults to false.
+    /// </summary>
+    public bool HelperTextOnFocus { get; set; } = false;
     /// <summary>
     /// Control Placeholder text
     /// </summary>
@@ -63,8 +72,12 @@ public class Field
     [JsonConverter(typeof(ColorTypeConverter))]
     public Color AdornmentColor { get; set; }
 
-    [JsonIgnore]
-    public Func<string, IEnumerable<string>> ValidateInput { get; set; } = null;
+    //[JsonIgnore]
+    //public Func<string, IEnumerable<string>> ValidateMethod { get; set; } 
+    
+    //[Obsolete]
+    //[JsonIgnore]
+    //public Func<string, IEnumerable<string>> ValidateInput { get; set; } = null;
     // Default function implementation
     private IEnumerable<string> MaxCharacters(string ch)
     {

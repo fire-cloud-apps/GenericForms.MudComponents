@@ -4,11 +4,12 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Version>1.0.2</Version>
+        <Version>1.0.3</Version>
         <Authors>SR Ganesh Ram</Authors>
         <Description>Helper Package for Blazor.UI.FormGenerator</Description>
         <AssemblyVersion>1.0.1</AssemblyVersion>
         <FileVersion>1.0.1</FileVersion>
+        <Title>Form Generator Inputs</Title>
     </PropertyGroup>
 
 

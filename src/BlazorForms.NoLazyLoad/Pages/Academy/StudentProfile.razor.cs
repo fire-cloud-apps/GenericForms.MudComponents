@@ -40,7 +40,7 @@ public partial class StudentProfile : ComponentBase
             var nameField = detailPanel.Fields.Where(field => field.FieldName == "FirstName").FirstOrDefault();
             if (nameField is not null)
             {
-                nameField.ValidateInput = MaxCharacters;
+                nameField.Validation.Method = MaxCharacters;
             }
         }
         

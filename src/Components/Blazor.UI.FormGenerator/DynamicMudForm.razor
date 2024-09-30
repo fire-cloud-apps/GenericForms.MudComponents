@@ -74,15 +74,19 @@
                                             case InputFieldType.Text:
                                             default:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              Validation="@field.ValidateInput"
-                                                              Label="@field.Label"                                                              
+                                                              Validation="@field.Validation.Method"
+                                                              Label="@field.Label"   
+                                                              
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
+                                                              
                                                               Mask="@(field.PatternMask != null ? new PatternMask(field.PatternMask) : null)"
                                                               Placeholder="@field.Placeholder"
                                                               Adornment="@field.Adornment"
                                                               AdornmentText="@field.AdornmentText"
                                                               AdornmentColor="@field.AdornmentColor"
                                                               AdornmentIcon="@field.AdornmentIcon"
-
+                                                              
                                                               MaxLength="@field.MaxLength"
                                                               ReadOnly="@field.IsReadOnly"
                                                               Required="@field.Validation.IsRequired"
@@ -95,10 +99,11 @@
                                                               ReadOnly="@field.IsReadOnly"
                                                               Placeholder="@field.Placeholder"
                                                               MaxLength="@field.MaxLength"
-
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
-                                                              Validation="@field.ValidateInput"
+                                                              Validation="@field.Validation.Method"
                                                               Lines="@field.Line" Label="@field.Label" Variant="@field.Variant">
                                                 </MudTextField>
                                                 break;
@@ -108,7 +113,10 @@
                                                               Placeholder="@field.Placeholder"
                                                               ReadOnly="@field.IsReadOnly"
                                                               MaxLength="@field.MaxLength"
-
+                                                              
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
+                                                              
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })"
@@ -126,9 +134,11 @@
                                                                  Placeholder="@field.Placeholder"
                                                                  ReadOnly="@field.IsReadOnly"
                                                                  MaxLength="@field.MaxLength"
+                                                                 HelperText="@field.HelperText"
+                                                                 HelperTextOnFocus="@field.HelperTextOnFocus"
                                                                  Required="@field.Validation.IsRequired"
                                                                  RequiredError="@field.Validation.RequiredError"
-                                                                 Validation="@field.ValidateInput"
+                                                                 Validation="@field.Validation.Method"
                                                                  Label="@field.Label" Variant="@field.Variant"/>
                                                 break;
                                             case InputFieldType.Radio:
@@ -136,7 +146,7 @@
                                                 <MudRadioGroup @bind-Value="_formData[field.FieldName]"
                                                                Required="@field.Validation.IsRequired"
                                                                RequiredError="@field.Validation.RequiredError"
-                                                               Validation="@field.ValidateInput" 
+                                                               Validation="@field.Validation.Method"
                                                                ReadOnly="@field.IsReadOnly">
                                                     @foreach (var item in @field.SelectItemList)
                                                     {
@@ -181,7 +191,9 @@
                                                 <MudSelect T="string" Label="@field.Label" 
                                                            Variant="@field.Variant"
                                                            Placeholder="@field.Placeholder"
-                                                           Validation="@field.ValidateInput"
+                                                           Validation="@field.Validation.Method"
+                                                           HelperText="@field.HelperText"
+                                                           HelperTextOnFocus="@field.HelperTextOnFocus"
                                                            Required="@field.Validation.IsRequired"
                                                            RequiredError="@field.Validation.RequiredError"
 
@@ -199,11 +211,13 @@
                                             case InputFieldType.DateTime:
                                                 <MudTextField Format="s"
                                                               Placeholder="@field.Placeholder"
-                                                              Validation="@field.ValidateInput"
+                                                              Validation="@field.Validation.Method"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               @bind-Value="_formDataDateTime[field.FieldName]"
                                                               Label="@field.Label" ReadOnly="@field.IsReadOnly"
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
                                                               InputType="InputType.DateTimeLocal"/>
                                                 @* <MudDatePicker Label="@field.Label" @key="field.Id" *@
                                                 @*                @bind-Value="formDataDateTime[field.FieldName]" *@
@@ -215,11 +229,13 @@
                                             case InputFieldType.Date:
                                                 <MudTextField Format="yyyy-MM-dd" ReadOnly="@field.IsReadOnly"
                                                               Placeholder="@field.Placeholder"
-                                                              Validation="@field.ValidateInput"
+                                                              Validation="@field.Validation.Method"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               @bind-Value="_formDataDateTime[field.FieldName]"
                                                               Label="@field.Label"
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
                                                               InputType="InputType.Date"/>
 
                                                 @*  MudDatePicker does not works with Lazy Loading/Dynamic loading.. *@
@@ -227,10 +243,12 @@
                                             case InputFieldType.Time:
                                                 <MudTextField @bind-Value="_formData[field.FieldName]"
                                                               Placeholder="@field.Placeholder"
-                                                              Validation="@field.ValidateInput"
+                                                              Validation="@field.Validation.Method"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
                                                               Label="@field.Label" ReadOnly="@field.IsReadOnly"
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
                                                               InputType="InputType.Time"/>
                                                 break;
                                             case InputFieldType.Password:
@@ -238,12 +256,13 @@
                                                               Placeholder="@field.Placeholder"
                                                               Required="@field.Validation.IsRequired"
                                                               RequiredError="@field.Validation.RequiredError"
-                                                              Validation="@field.ValidateInput"
+                                                              Validation="@field.Validation.Method"
                                                               ReadOnly="@field.IsReadOnly"
                                                               Label="@field.Label" Variant="@field.Variant" 
                                                               InputType="@_passwordInput"
                                                               MaxLength="@field.MaxLength"
-                                                              
+                                                              HelperText="@field.HelperText"
+                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
                                                               
                                                               Adornment="Adornment.End" 
                                                               AdornmentIcon="@_passwordInputIcon" 
@@ -257,7 +276,7 @@
                                                 }
                                                 
                                                 <MudCheckBox @bind-Value="_formDataBool[field.FieldName]"
-                                                             Validation="@field.ValidateInput"
+                                                             Validation="@field.Validation.Method"
                                                              ReadOnly="@field.IsReadOnly"
                                                              Required="@field.Validation.IsRequired"
                                                              RequiredError="@field.Validation.RequiredError"
@@ -265,7 +284,8 @@
                                                 break;
                                             case InputFieldType.Switch:
                                                 <MudSwitch @bind-Value="_formDataBool[field.FieldName]"
-                                                           Validation="@field.ValidateInput"
+                                                           Validation="@field.Validation.Method"
+                                                           
                                                            Label="@field.Label"
                                                            ReadOnly="@field.IsReadOnly"
                                                            Required="@field.Validation.IsRequired"
@@ -275,12 +295,14 @@
                                             case InputFieldType.AutoComplete:
                                                 <MudAutocomplete T="string"
                                                                  @bind-Value="_formData[field.FieldName]"
-                                                                 Validation="@field.ValidateInput"
+                                                                 Validation="@field.Validation.Method"
                                                                  Placeholder="@field.Placeholder"
                                                                  
                                                                  Required="@field.Validation.IsRequired"
                                                                  RequiredError="@field.Validation.RequiredError"
-                                                                 
+
+                                                                 HelperText="@field.HelperText"
+                                                                 HelperTextOnFocus="@field.HelperTextOnFocus"
                                                                  ResetValueOnEmptyText="true"
                                                                  SearchFunc="@field.AutoCompleteFunction"
                                                                  Label="@field.Label"
@@ -305,7 +327,7 @@
                                                         </ActivatorContent>
                                                     </MudFileUpload> *@
                                                 <MudFileUpload T="IBrowserFile"
-                                                               Validation="@field.ValidateInput"
+                                                               Validation="@field.Validation.Method"
                                                                Required="@field.Validation.IsRequired"
                                                                RequiredError="@field.Validation.RequiredError"
                                                                
@@ -338,7 +360,8 @@
                                                 
                                                 break;
                                             case InputFieldType.Field:
-                                                <MudField Label="@field.Label" Variant="@field.Variant" >
+                                                <MudField Label="@field.Label"
+                                                          Variant="@field.Variant" >
                                                     @field.Label
                                                 </MudField>
                                                 break;

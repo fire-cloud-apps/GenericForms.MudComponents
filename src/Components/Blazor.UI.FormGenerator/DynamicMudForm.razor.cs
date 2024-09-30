@@ -145,83 +145,6 @@ public partial class DynamicMudForm
         return JsonSerializer.Serialize(_formData);
     }
 
-    public static bool AttachCard_EventAction(FormBuilder[] formBuilders, string cardName, 
-        Func<Task?> cardAction)
-    {
-        bool result = false;
-        //Identify Card Panel and attach 'Func<Task?>'
-        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
-        if (detailPanel is not null)
-        {
-            detailPanel.Header.CardAction.ActionTrigger = cardAction;
-            result = true;
-        }
-        return result;
-    }
-    
-    public static bool AttachSubmitButton_EventAction(FormBuilder[] formBuilders, string cardName, 
-        Func<EventArgs, Task?> cardAction)
-    {
-        bool result = false;
-        //Identify Card Panel and attach ' Func<EventArgs, Task?> cardAction'
-        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
-        if (detailPanel is not null)
-        {
-            detailPanel.Footer.Submit_Handler = cardAction;
-            result = true;
-        }
-        return result;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="formBuilders"></param>
-    /// <param name="cardName"></param>
-    /// <param name="fieldName"></param>
-    /// <param name="eventAction"></param>
-    /// <param name="logger">logger object to log</param>
-    /// <returns></returns>
-    public static bool AutoComplete_EventAction(
-        FormBuilder[] formBuilders, 
-        string cardName, 
-        string fieldName,
-        Func<string, CancellationToken, Task<IEnumerable<string>>> eventAction, ILogger<object>? logger = null)
-    {
-        bool result = false;
-        //Identify Card Panel and attach ' Func<string, CancellationToken, Task<IEnumerable<string>>>'
-        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
-        if (detailPanel is not null)
-        {
-            var autoCompleteField = detailPanel.Fields.FirstOrDefault(field => field.FieldName == fieldName);
-            if (autoCompleteField is not null)
-            {
-                autoCompleteField.AutoCompleteFunction =  eventAction;
-                logger?.LogInformation("{FieldName} - AutoComplete Attached", fieldName);
-            }
-            result = true;
-        }
-        return result;
-    }
-    
-    public static bool AttachFileUpload_EventAction(FormBuilder[] formBuilders, string cardName, string fieldName,
-        Func<IBrowserFile, Task?> eventAction , ILogger<object> logger = null)
-    {
-        bool result = false;
-        //Identify Card Panel and attach ' Func<IBrowserFile, Task?> eventAction '
-        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
-        if (detailPanel is not null)
-        {
-            var autoCompleteField = detailPanel.Fields.Where(field => field.FieldName == fieldName).FirstOrDefault();
-            if (autoCompleteField is not null)
-            {
-                autoCompleteField.FilesChangedFunction = eventAction;
-                logger?.LogInformation("FieldName: {FieldName} - Event: {MethodName} Attached", fieldName, eventAction.Method.Name);
-            }
-            result = true;
-        }
-        return result;
-    }
     #endregion
 
     #region Submit Event Trigger
@@ -259,13 +182,13 @@ public partial class DynamicMudForm
     #endregion
 
     #region Valiation List
-    [Parameter]
-    public IDictionary<string, Func<string, IEnumerable<string>>> ValidationFuncList
+    //[Parameter]
+    /*public IDictionary<string, Func<string, IEnumerable<string>>> ValidationFuncList
     {
         get;
         set;
     } = new Dictionary<string, Func<string, IEnumerable<string>>>();
-
+    */
     /* Example Method which will be added in 'ValidationFuncLis'
      private IEnumerable<string> MaxCharacters(string ch)
     {
