@@ -8,6 +8,7 @@ public enum InputFieldType
     Select,
     ChipSet,
     ChipSets,
+    ColorCompact,
     Email,
     Password,
     MultiLine,
@@ -23,5 +24,6 @@ public enum InputFieldType
     Divider,
     Field,
     Image,
+    Link,
     Custom
 }

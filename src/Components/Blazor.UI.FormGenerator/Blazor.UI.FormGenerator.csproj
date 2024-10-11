@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Dynamic Blazor Form using MudBlazor</Title>
-    <Version>0.0.1.8</Version>
-    <AssemblyVersion>1.0.1.6</AssemblyVersion>
+    <Version>0.0.2</Version>
+    <AssemblyVersion>1.0.2-beta</AssemblyVersion>
     <FileVersion>1.0.2</FileVersion>
     <Company>Fire Cloud</Company>
     <Description>Dynamic Blazor From used as a real-world solution where forms are generated dynamically from a JSON file or structured object. We’ll cover:
@@ -19,8 +19,12 @@ Using helper methods to manage event handlers and file uploads.</Description>
     <RepositoryUrl>https://github.com/fire-cloud-apps/GenericForms.MudComponents?tab=readme-ov-file</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>dynamic forms</PackageTags>
-    <PackageReleaseNotes>Added Method,
-1. AttachValidationEvent((FormBuilder[] formBuilders, string cardName, string fieldName, object validationMethod)</PackageReleaseNotes>
+    <PackageReleaseNotes>
+Whats New? 
+ - ColorCompact a new color selection control box added
+
+Issue Fix:
+ - NA</PackageReleaseNotes>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeSymbols>True</IncludeSymbols>
@@ -57,7 +61,7 @@ Using helper methods to manage event handlers and file uploads.</Description>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blazor.Shared.FormGenerator\Blazor.Shared.FormGenerator.csproj" >      
+    <ProjectReference Include="..\Blazor.Shared.FormGenerator\Blazor.Shared.FormGenerator.csproj">      
     </ProjectReference>
   </ItemGroup>
 

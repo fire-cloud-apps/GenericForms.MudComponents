@@ -19,7 +19,7 @@ public partial class DynamicMudForm
     /// e.g. MaxCharacters(string ch)  { ... }
     /// </code>
     /// <returns></returns>
-    private static bool AttachValidationEvent(FormBuilder[] formBuilders, string cardName, string fieldName, object validationMethod)
+    public static bool AttachValidationEvent(FormBuilder[] formBuilders, string cardName, string fieldName, object validationMethod)
     {
         bool result = false;
         var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);

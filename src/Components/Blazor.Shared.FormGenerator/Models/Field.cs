@@ -190,4 +190,20 @@ public class Field
     public Color Color { get; set; } = Color.Default;
 
 
+    #region Link Fields
+
+    /// <summary>
+    /// The URL to navigate to upon click. Defaults to null.
+    /// </summary>
+    public string Href { get; set; }
+    /// <summary>
+    /// The browser frame to open this link when Href is specified.
+    /// </summary>
+    public string Target { get; set; }
+    [JsonConverter(typeof(UnderlineTypeConverter))]
+    public Underline Underline { get; set; } = MudBlazor.Underline.Hover;
+
+    #endregion
+
+
 }

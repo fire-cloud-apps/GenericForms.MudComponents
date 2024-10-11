@@ -258,6 +258,7 @@
                                                               RequiredError="@field.Validation.RequiredError"
                                                               Validation="@field.Validation.Method"
                                                               ReadOnly="@field.IsReadOnly"
+
                                                               Label="@field.Label" Variant="@field.Variant" 
                                                               InputType="@_passwordInput"
                                                               MaxLength="@field.MaxLength"
@@ -354,7 +355,7 @@
                                                 <div class="@("d-flex " + @field.TitleAlign + " flex-grow-1 gap-2")">
                                                     <MudAlert Severity="@field.Severity"
                                                               Variant="@field.Variant">
-                                                        @field.Label  @("Title Align: ") @field.TitleAlign
+                                                        @field.Label
                                                     </MudAlert>
                                                 </div>
                                                 
@@ -365,14 +366,23 @@
                                                     @field.Label
                                                 </MudField>
                                                 break;
+                                            case InputFieldType.Link:
+                                                <MudLink Href="@field.Href" Target="@field.Target"
+                                                          Underline="@field.Underline" >
+                                                    @field.Label
+                                                </MudLink>
+                                                break;   
                                             case InputFieldType.Image:
                                                 <MudImage Fluid="@field.Fluid"
                                                           Src="@field.ImageSrc" Width="@field.Width"
                                                           Height="@field.Height"
                                                           Alt="@field.Alt" Class="@field.Class"/>
                                                 break;
+                                            case InputFieldType.ColorCompact:
+                                                <MudColorPicker Label="@field.Label" ColorPickerView="ColorPickerView.GridCompact" />
+                                                break;
                                             @* case InputFieldType.Custom:
-                                                Future we can use 'RenderFragmet'
+                                                Future we can use 'RenderFragment'
                                                 break; *@
                                         }
                                     </MudItem>
