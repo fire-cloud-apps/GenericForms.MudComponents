@@ -1,0 +1,51 @@
+﻿<MudSelect T="string"
+           @bind-Value="@FormData"
+
+           Label="@Fields.Label"
+           Variant="@Fields.Variant"
+           Placeholder="@Fields.Placeholder"
+           Validation="@Fields.Validation.Method"
+           HelperText="@Fields.HelperText"
+
+           HelperTextOnFocus="@Fields.HelperTextOnFocus"
+           Required="@Fields.Validation.IsRequired"
+           RequiredError="@Fields.Validation.RequiredError"
+           MultiSelection="@Fields.MultiSelect"
+           ReadOnly="@Fields.IsReadOnly"
+           
+>
+    @foreach (var item in @Fields.SelectItemList)
+    {
+        <MudSelectItem Value="item.Value">@item.Text</MudSelectItem>
+        //Console.WriteLine($"Selected Value: {item.Value}, Text: {item.Text}");
+    }
+</MudSelect>
+
+@code {
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private string? CurrentValue { get; set; }
+    [Parameter]
+    public required string? FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string?> FormDataChanged { get; set; }
+
+    #endregion
+
+}

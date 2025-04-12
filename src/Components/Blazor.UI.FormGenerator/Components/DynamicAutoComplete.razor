@@ -1,0 +1,44 @@
+﻿<MudAutocomplete T="string"
+
+                 @bind-Value="FormData"
+                 Validation="@Fields.Validation.Method"
+                 Placeholder="@Fields.Placeholder"
+                 Required="@Fields.Validation.IsRequired"
+                 RequiredError="@Fields.Validation.RequiredError"
+
+                 HelperText="@Fields.HelperText"
+                 HelperTextOnFocus="@Fields.HelperTextOnFocus"
+                 ResetValueOnEmptyText="true"
+
+                 SearchFunc="@Fields.AutoCompleteFunction"
+                 Label="@Fields.Label"
+                 ReadOnly="@Fields.IsReadOnly" />
+
+@code {
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+
+    #region Binding Form Data As String
+
+    private string? CurrentValue { get; set; }
+    [Parameter]
+    public required string? FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string?> FormDataChanged { get; set; }
+
+    #endregion
+
+}

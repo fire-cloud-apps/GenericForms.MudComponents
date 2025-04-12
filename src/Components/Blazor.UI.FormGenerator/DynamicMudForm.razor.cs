@@ -15,7 +15,7 @@ public partial class DynamicMudForm
     [Parameter]
     public required FormBuilder[] FormBuilders { get; set; }
 
-    [Parameter] public GlobalBuilderSettings GlobalBuilderSettings { get; set; } = new GlobalBuilderSettings();
+    [Parameter] public GlobalBuilderSettings GlobalBuilderSettings { get; set; } = new GlobalBuilderSettings();    
 
     #endregion
 
@@ -49,7 +49,7 @@ public partial class DynamicMudForm
     private Dictionary<string, string> _formData = new Dictionary<string, string>();
     private Dictionary<string, IList<SelectionItems>> _formItemArrayData = new Dictionary<string, IList<SelectionItems>>();
     private Dictionary<string, IReadOnlyCollection<string>> _formReadOnlySelectData = new Dictionary<string, IReadOnlyCollection<string>>();
-    private Dictionary<string, decimal> _formDataNumeric = new Dictionary<string, decimal>();
+    private Dictionary<string, decimal?> _formDataNumeric = new Dictionary<string, decimal?>();
     private Dictionary<string, bool> _formDataBool = new Dictionary<string, bool>();
     private Dictionary<string,  DateTime> _formDataDateTime = new Dictionary<string,  DateTime>();
     
@@ -198,26 +198,7 @@ public partial class DynamicMudForm
 
     #endregion
     
-    #region Toggle Password
-    bool _isShow;
-    InputType _passwordInput = InputType.Password;
-    string _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
     
-    void PasswordToggle()
-    {
-        if (_isShow)
-        {
-            _isShow = false;
-            _passwordInputIcon = Icons.Material.Filled.VisibilityOff;
-            _passwordInput = InputType.Password;
-        }
-        else {
-            _isShow = true;
-            _passwordInputIcon = Icons.Material.Filled.Visibility;
-            _passwordInput = InputType.Text;
-        }
-    }
-    #endregion
 
     #region File Upload
     [Parameter] 

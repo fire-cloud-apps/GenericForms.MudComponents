@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+<MudFileUpload T="IBrowserFile"
+               Validation="@Fields.Validation.Method"
+               Required="@Fields.Validation.IsRequired"
+               RequiredError="@Fields.Validation.RequiredError"
+               Accept="@Fields.FileAllowed"
+               FilesChanged="@Fields.FilesChangedFunction">
+    <ActivatorContent>
+        <MudButton Variant="@Fields.Variant"
+                   StartIcon="@Icons.Material.Filled.AttachFile">
+            @if (GlobalBuilderSettings.SelectedFile.ContainsKey(@Fields.FieldName))
+            {
+                <MudText>
+                    @GlobalBuilderSettings.SelectedFile[@Fields.FieldName].Name
+                </MudText>
+            }
+            else
+            {
+                @("Select File - Allowed Only " + @Fields.FileAllowed)
+            }
+        </MudButton>
+    </ActivatorContent>
+</MudFileUpload>
+
+@code {
+    [Parameter]
+    public required Field? Fields { get; set; }
+    [Parameter] 
+    public GlobalBuilderSettings GlobalBuilderSettings { get; set; } = new GlobalBuilderSettings();
+
+}
+
+@*     <MudFileUpload T="IReadOnlyList<IBrowserFile>"
+                                                        Accept="@Fields.FileAllowed" FilesChanged="FileUpload" MaximumFileCount="10">
+                                                        <ActivatorContent>
+                                                            <MudButton Variant="@Fields.Variant" 
+                                                                       StartIcon="@Icons.Material.Filled.AttachFile">
+                                                                @($"Upload Files ({FileLists.Count})")
+                                                            </MudButton>
+                                                        </ActivatorContent>
+                                                    </MudFileUpload> *@

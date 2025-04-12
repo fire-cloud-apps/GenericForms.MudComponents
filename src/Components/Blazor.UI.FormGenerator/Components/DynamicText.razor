@@ -1,0 +1,60 @@
+﻿<!-- 
+Dynamic Text Component:
+This component is used to render a text field dynamically based on the provided field configuration.
+It supports various properties such as validation, placeholder, adornments, and more.
+
+-->
+
+<MudTextField @bind-Value="@FormData"
+
+        Validation="@Fields.Validation.Method"
+        Label="@Fields.Label"
+        HelperText="@Fields.HelperText"
+        HelperTextOnFocus="@Fields.HelperTextOnFocus"
+        Mask="@(Fields.PatternMask != null ? new PatternMask(Fields.PatternMask) : null)"
+        Placeholder="@Fields.Placeholder"			 
+
+        Adornment="@Fields.Adornment"
+        AdornmentText="@Fields.AdornmentText"
+        AdornmentColor="@Fields.AdornmentColor"
+        AdornmentIcon="@Fields.AdornmentIcon"
+
+        MaxLength="@Fields.MaxLength" 
+        ReadOnly="@Fields.IsReadOnly"
+        Required="@Fields.Validation.IsRequired"
+        RequiredError="@Fields.Validation.RequiredError"
+        Variant="@Fields.Variant"
+        Margin="@Fields.Margin"
+        
+        >
+
+</MudTextField>
+
+@code{
+
+   [Parameter]
+    public required Field? Fields { get; set; }
+
+	#region Binding Form Data As String
+
+    private string? CurrentValue { get; set; }
+    [Parameter]
+    public required string? FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string?> FormDataChanged { get; set; }
+
+	#endregion
+
+}

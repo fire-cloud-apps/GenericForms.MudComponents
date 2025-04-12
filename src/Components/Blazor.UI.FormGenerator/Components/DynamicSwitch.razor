@@ -1,0 +1,34 @@
+﻿<MudSwitch @bind-Value="@FormData"
+           Validation="@Fields.Validation.Method"
+           Label="@Fields.Label"
+           ReadOnly="@Fields.IsReadOnly"
+           Required="@Fields.Validation.IsRequired"
+           RequiredError="@Fields.Validation.RequiredError" />
+@code {
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private bool CurrentValue { get; set; }
+    [Parameter]
+    public required bool FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<bool> FormDataChanged { get; set; }
+
+    #endregion
+
+}

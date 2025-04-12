@@ -1,0 +1,43 @@
+﻿<MudChipSet T="string"
+            @bind-SelectedValues="@FormData"
+            SelectionMode="@Fields.SelectionMode"
+            CheckMark
+            Variant="@Fields.Variant"
+            Color="@Fields.Color">
+    @foreach (var item in
+    @Fields.SelectItemList)
+    {
+        <MudChip T="string"
+                 Text="@item.Text"
+                 Value="@item.Value" />
+    }
+</MudChipSet>
+
+@code {
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private IReadOnlyCollection<string>? CurrentValue { get; set; }
+    [Parameter]
+    public required IReadOnlyCollection<string>? FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<IReadOnlyCollection<string>?> FormDataChanged { get; set; }
+
+    #endregion
+
+}

@@ -41,6 +41,12 @@ public class Field
     [JsonConverter(typeof(VariantTypeConverter))]
     public Variant Variant { get; set; } = Variant.Filled;
 
+    /// <summary>
+    /// Variant types are None, Dense, Normal, 
+    /// </summary>
+    [JsonConverter(typeof(MarginTypeConverter))]
+    public Margin Margin { get; set; } = Margin.None;
+
     #region Text Input Specific Property
 
     /// <summary>

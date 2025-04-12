@@ -1,0 +1,44 @@
+﻿<MudTextField Format="yyyy-MM-dd"
+              @bind-Value="@FormData"
+
+              ReadOnly="@Fields.IsReadOnly"
+              Placeholder="@Fields.Placeholder"
+              Validation="@Fields.Validation.Method"
+              Required="@Fields.Validation.IsRequired"
+              RequiredError="@Fields.Validation.RequiredError"
+             
+              Label="@Fields.Label"
+              HelperText="@Fields.HelperText"
+              HelperTextOnFocus="@Fields.HelperTextOnFocus"
+              InputType="InputType.Date" />
+
+
+@code 
+{
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private DateTime CurrentValue { get; set; }
+    [Parameter]
+    public required DateTime FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<DateTime> FormDataChanged { get; set; }
+
+    #endregion
+
+}

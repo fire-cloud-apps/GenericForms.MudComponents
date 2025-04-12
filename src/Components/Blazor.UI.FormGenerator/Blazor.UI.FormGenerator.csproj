@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>Dynamic Blazor Form using MudBlazor</Title>
     <Version>0.0.2</Version>
-    <AssemblyVersion>1.0.2-beta</AssemblyVersion>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
     <FileVersion>1.0.2</FileVersion>
     <Company>Fire Cloud</Company>
     <Description>Dynamic Blazor From used as a real-world solution where forms are generated dynamically from a JSON file or structured object. We’ll cover:
@@ -63,6 +63,14 @@ Issue Fix:
   <ItemGroup>
     <ProjectReference Include="..\Blazor.Shared.FormGenerator\Blazor.Shared.FormGenerator.csproj">      
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="..\Blazor.Shared.FormGenerator\bin\Debug\net8.0\Blazor.Shared.FormGenerator.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="..\Blazor.Shared.FormGenerator\bin\Debug\net8.0\Blazor.Shared.FormGenerator.dll" />
   </ItemGroup>
 
   <ItemGroup>

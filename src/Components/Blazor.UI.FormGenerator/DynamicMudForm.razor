@@ -1,6 +1,8 @@
 ﻿@using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.Extensions.Logging
+@using Blazor.UI.FormGenerator.Components
+
 @inject ILogger<DynamicMudForm> Logger
 
 @* @(ValidationFuncList.ContainsKey(field.FieldName) ? ValidationFuncList[field.FieldName] : null) *@
@@ -73,241 +75,60 @@
                                         {
                                             case InputFieldType.Text:
                                             default:
-                                                <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              Validation="@field.Validation.Method"
-                                                              Label="@field.Label"   
-                                                              
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              
-                                                              Mask="@(field.PatternMask != null ? new PatternMask(field.PatternMask) : null)"
-                                                              Placeholder="@field.Placeholder"
-                                                              Adornment="@field.Adornment"
-                                                              AdornmentText="@field.AdornmentText"
-                                                              AdornmentColor="@field.AdornmentColor"
-                                                              AdornmentIcon="@field.AdornmentIcon"
-                                                              
-                                                              MaxLength="@field.MaxLength"
-                                                              ReadOnly="@field.IsReadOnly"
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              Variant="@field.Variant">
-                                                </MudTextField>
+                                                <DynamicText @bind-FormData="@_formData[field.FieldName]" Fields="@field" />                                                
                                                 break;
                                             case InputFieldType.MultiLine:
-                                                <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              ReadOnly="@field.IsReadOnly"
-                                                              Placeholder="@field.Placeholder"
-                                                              MaxLength="@field.MaxLength"
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              Validation="@field.Validation.Method"
-                                                              Lines="@field.Line" Label="@field.Label" Variant="@field.Variant">
-                                                </MudTextField>
+                                                <DynamicMultiLine @bind-FormData="@_formData[field.FieldName]" Fields="@field" />
                                                 break;
                                             case InputFieldType.Email:
-                                                <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              InputType="InputType.Email"
-                                                              Placeholder="@field.Placeholder"
-                                                              ReadOnly="@field.IsReadOnly"
-                                                              MaxLength="@field.MaxLength"
-                                                              
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              Validation="@(new EmailAddressAttribute() { ErrorMessage = "The email address is invalid" })"
-                                                              
-                                                              Adornment="@field.Adornment"
-                                                              AdornmentText="@field.AdornmentText"
-                                                              AdornmentColor="@field.AdornmentColor"
-                                                              AdornmentIcon="@field.AdornmentIcon"
-                                                              
-                                                              Label="@field.Label" Variant="@field.Variant">
-                                                </MudTextField>
+                                                <DynamicEmail  @bind-FormData="@_formData[field.FieldName]" Fields="@field" />                                               
                                                 break;
                                             case InputFieldType.Numeric:
-                                                <MudNumericField @bind-Value="_formDataNumeric[field.FieldName]"
-                                                                 Placeholder="@field.Placeholder"
-                                                                 ReadOnly="@field.IsReadOnly"
-                                                                 MaxLength="@field.MaxLength"
-                                                                 HelperText="@field.HelperText"
-                                                                 HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                                 Required="@field.Validation.IsRequired"
-                                                                 RequiredError="@field.Validation.RequiredError"
-                                                                 Validation="@field.Validation.Method"
-                                                                 Label="@field.Label" Variant="@field.Variant"/>
+                                                <DynamicNumber Fields="@field"
+                                                               @bind-FormData="@_formDataNumeric[field.FieldName]" />
                                                 break;
                                             case InputFieldType.Radio:
-                                                <MudText>@field.Label</MudText>
-                                                <MudRadioGroup @bind-Value="_formData[field.FieldName]"
-                                                               Required="@field.Validation.IsRequired"
-                                                               RequiredError="@field.Validation.RequiredError"
-                                                               Validation="@field.Validation.Method"
-                                                               ReadOnly="@field.IsReadOnly">
-                                                    @foreach (var item in @field.SelectItemList)
-                                                    {
-                                                        <MudRadio Value="item.Value">@item.Text</MudRadio>
-                                                        //Console.WriteLine($"Radio Value: {item.Value}, Text: {item.Text}");
-                                                    }
-                                                </MudRadioGroup>
+                                                <DynamicRadio 
+                                                    Fields="@field" @bind-FormData="_formData[field.FieldName]" />
                                                 break;
                                             case InputFieldType.ChipSet:
-                                                <MudChipSet T="string"
-                                                @bind-SelectedValue="@_formData[field.FieldName]" 
-                                                SelectionMode="@field.SelectionMode" 
-                                                CheckMark 
-                                                Variant="@field.Variant" 
-                                                Color="@field.Color">
-                                                    @foreach (var item in 
-                                                              @field.SelectItemList)
-                                                    {
-                                                        <MudChip T="string"
-                                                            Text="@item.Text"
-                                                            Value="@item.Value" />
-                                                    }
-                                                </MudChipSet>
+                                                <DynamicChip Fields="@field"
+                                                             @bind-FormData="@_formData[field.FieldName]" />
                                                 break;
                                             case InputFieldType.ChipSets:
-                                                <MudChipSet T="string"
-                                                            @bind-SelectedValues="@_formReadOnlySelectData[field.FieldName]" 
-                                                            SelectionMode="@field.SelectionMode" 
-                                                            CheckMark 
-                                                            Variant="@field.Variant" 
-                                                            Color="@field.Color">
-                                                    @foreach (var item in 
-                                                              @field.SelectItemList)
-                                                    {
-                                                        <MudChip T="string"
-                                                                 Text="@item.Text"
-                                                                 Value="@item.Value" />
-                                                    }
-                                                </MudChipSet>
+                                                <DynamicChipSets Fields="@field"
+																 @bind-FormData="@_formReadOnlySelectData[field.FieldName]" />
+                                                
                                                 break;
                                             case InputFieldType.Select:
-                                                <MudSelect T="string" Label="@field.Label" 
-                                                           Variant="@field.Variant"
-                                                           Placeholder="@field.Placeholder"
-                                                           Validation="@field.Validation.Method"
-                                                           HelperText="@field.HelperText"
-                                                           HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                           Required="@field.Validation.IsRequired"
-                                                           RequiredError="@field.Validation.RequiredError"
-
-                                                           MultiSelection ="@field.MultiSelect"
-                                                           ReadOnly="@field.IsReadOnly"
-                                                           @bind-Value="_formData[field.FieldName]">
-                                                    @foreach (var item in @field.SelectItemList)
-                                                    {
-                                                        <MudSelectItem Value="item.Value">@item.Text</MudSelectItem>
-                                                        //Console.WriteLine($"Selected Value: {item.Value}, Text: {item.Text}");
-                                                    }
-                                                </MudSelect>
+												<DynamicSelection Fields="@field"
+																  @bind-FormData="@_formData[field.FieldName]" />
                                                 break;
                                           
                                             case InputFieldType.DateTime:
-                                                <MudTextField Format="s"
-                                                              Placeholder="@field.Placeholder"
-                                                              Validation="@field.Validation.Method"
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              @bind-Value="_formDataDateTime[field.FieldName]"
-                                                              Label="@field.Label" ReadOnly="@field.IsReadOnly"
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              InputType="InputType.DateTimeLocal"/>
-                                                @* <MudDatePicker Label="@field.Label" @key="field.Id" *@
-                                                @*                @bind-Value="formDataDateTime[field.FieldName]" *@
-                                                @*                Variant="@field.Variant" />  *@
-
-                                                @*  MudDatePicker does not works with Lazy Loading/Dynamic loading.. *@
+                                                <DynamicDateTime Fields="@field"
+																 @bind-FormData="@_formDataDateTime[field.FieldName]" />
 
                                                 break;
                                             case InputFieldType.Date:
-                                                <MudTextField Format="yyyy-MM-dd" ReadOnly="@field.IsReadOnly"
-                                                              Placeholder="@field.Placeholder"
-                                                              Validation="@field.Validation.Method"
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              @bind-Value="_formDataDateTime[field.FieldName]"
-                                                              Label="@field.Label"
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              InputType="InputType.Date"/>
-
-                                                @*  MudDatePicker does not works with Lazy Loading/Dynamic loading.. *@
+                                                <DynamicDate Fields="@field" 
+                                                    @bind-FormData="@_formDataDateTime[field.FieldName]" />
                                                 break;
                                             case InputFieldType.Time:
-                                                <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              Placeholder="@field.Placeholder"
-                                                              Validation="@field.Validation.Method"
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              Label="@field.Label" ReadOnly="@field.IsReadOnly"
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              InputType="InputType.Time"/>
+                                                <DynamicTime Fields="@field"
+                                                             @bind-FormData="@_formDataDateTime[field.FieldName]" />
                                                 break;
                                             case InputFieldType.Password:
-                                                <MudTextField @bind-Value="_formData[field.FieldName]"
-                                                              Placeholder="@field.Placeholder"
-                                                              Required="@field.Validation.IsRequired"
-                                                              RequiredError="@field.Validation.RequiredError"
-                                                              Validation="@field.Validation.Method"
-                                                              ReadOnly="@field.IsReadOnly"
-
-                                                              Label="@field.Label" Variant="@field.Variant" 
-                                                              InputType="@_passwordInput"
-                                                              MaxLength="@field.MaxLength"
-                                                              HelperText="@field.HelperText"
-                                                              HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                              
-                                                              Adornment="Adornment.End" 
-                                                              AdornmentIcon="@_passwordInputIcon" 
-                                                              OnAdornmentClick="PasswordToggle" 
-                                                              AdornmentAriaLabel="Show Password"/>
+												<DynamicPassword @bind-FormData="@_formData[field.FieldName]" Fields="@field" />                                                
                                                 break;
                                             case InputFieldType.CheckBox:
-                                                @if (!string.IsNullOrEmpty(field.Placeholder))
-                                                {
-                                                    <MudText>@field.Placeholder</MudText>
-                                                }
-                                                
-                                                <MudCheckBox @bind-Value="_formDataBool[field.FieldName]"
-                                                             Validation="@field.Validation.Method"
-                                                             ReadOnly="@field.IsReadOnly"
-                                                             Required="@field.Validation.IsRequired"
-                                                             RequiredError="@field.Validation.RequiredError"
-                                                             Label="@field.Label"/>
+												<DynamicCheckBox @bind-FormData="_formDataBool[field.FieldName]" Fields="@field" />
                                                 break;
                                             case InputFieldType.Switch:
-                                                <MudSwitch @bind-Value="_formDataBool[field.FieldName]"
-                                                           Validation="@field.Validation.Method"
-                                                           
-                                                           Label="@field.Label"
-                                                           ReadOnly="@field.IsReadOnly"
-                                                           Required="@field.Validation.IsRequired"
-                                                           RequiredError="@field.Validation.RequiredError"
-                                                           />
+                                                <DynamicSwitch @bind-FormData="_formDataBool[field.FieldName]" Fields="@field" />                                                   
                                                 break;
                                             case InputFieldType.AutoComplete:
-                                                <MudAutocomplete T="string"
-                                                                 @bind-Value="_formData[field.FieldName]"
-                                                                 Validation="@field.Validation.Method"
-                                                                 Placeholder="@field.Placeholder"
-                                                                 
-                                                                 Required="@field.Validation.IsRequired"
-                                                                 RequiredError="@field.Validation.RequiredError"
-
-                                                                 HelperText="@field.HelperText"
-                                                                 HelperTextOnFocus="@field.HelperTextOnFocus"
-                                                                 ResetValueOnEmptyText="true"
-                                                                 SearchFunc="@field.AutoCompleteFunction"
-                                                                 Label="@field.Label"
-                                                                 ReadOnly="@field.IsReadOnly"/>
+                                                <DynamicAutoComplete @bind-FormData="_formData[field.FieldName]" Fields="@field" />                                               
                                                 break;
                                             case InputFieldType.Title:
                                                 <div class="@("d-flex " + @field.TitleAlign + " flex-grow-1 gap-2")">
@@ -318,38 +139,7 @@
                                                 <MudDivider Class="ma-2"/>
                                                 break;
                                             case InputFieldType.FileUpload:
-                                                @*     <MudFileUpload T="IReadOnlyList<IBrowserFile>"
-                                                        Accept="@field.FileAllowed" FilesChanged="FileUpload" MaximumFileCount="10">
-                                                        <ActivatorContent>
-                                                            <MudButton Variant="@field.Variant"
-                                                                       StartIcon="@Icons.Material.Filled.AttachFile">
-                                                                @($"Upload Files ({FileLists.Count})")
-                                                            </MudButton>
-                                                        </ActivatorContent>
-                                                    </MudFileUpload> *@
-                                                <MudFileUpload T="IBrowserFile"
-                                                               Validation="@field.Validation.Method"
-                                                               Required="@field.Validation.IsRequired"
-                                                               RequiredError="@field.Validation.RequiredError"
-                                                               
-                                                               Accept="@field.FileAllowed"
-                                                               FilesChanged="@field.FilesChangedFunction">
-                                                    <ActivatorContent>
-                                                        <MudButton Variant="@field.Variant"
-                                                                   StartIcon="@Icons.Material.Filled.AttachFile">
-                                                            @if (GlobalBuilderSettings.SelectedFile.ContainsKey(@field.FieldName))
-                                                            {
-                                                                <MudText>
-                                                                    @GlobalBuilderSettings.SelectedFile[@field.FieldName].Name
-                                                                </MudText>
-                                                            }
-                                                            else
-                                                            {
-                                                                @("Select File - Allowed Only " + @field.FileAllowed)
-                                                            }
-                                                        </MudButton>
-                                                    </ActivatorContent>
-                                                </MudFileUpload>
+                                                <DynamicFileUpload Fields="@field" GlobalBuilderSettings="@GlobalBuilderSettings" />
                                                 break;
                                             case InputFieldType.Alert:
                                                 <div class="@("d-flex " + @field.TitleAlign + " flex-grow-1 gap-2")">

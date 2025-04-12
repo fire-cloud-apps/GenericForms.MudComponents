@@ -1,0 +1,53 @@
+﻿<!--
+Dynamic Multiplie Component:
+This component is used to render a multiple text field dynamically based on the provided field configuration.
+It supports various properties such as validation, placeholder, adornments, and more.
+
+-->
+
+<MudTextField @bind-Value="FormData"
+
+              ReadOnly="@Fields.IsReadOnly"
+              Placeholder="@Fields.Placeholder"
+              MaxLength="@Fields.MaxLength"
+              HelperText="@Fields.HelperText"
+              HelperTextOnFocus="@Fields.HelperTextOnFocus"
+             
+              Required="@Fields.Validation.IsRequired"
+              RequiredError="@Fields.Validation.RequiredError"
+              Validation="@Fields.Validation.Method"
+              Lines="@Fields.Line" 
+              Label="@Fields.Label" 
+              Variant="@Fields.Variant">
+
+</MudTextField>
+
+@code {
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+
+    #region Binding Form Data As String
+
+    private string? CurrentValue { get; set; }
+    [Parameter]
+    public required string? FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string?> FormDataChanged { get; set; }
+
+    #endregion
+
+
+}

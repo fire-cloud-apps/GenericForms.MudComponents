@@ -1,0 +1,42 @@
+﻿@if (!string.IsNullOrEmpty(Fields.Placeholder))
+{
+    <MudText>@Fields.Placeholder</MudText>
+}
+
+<MudCheckBox @bind-Value="FormData"
+             Validation="@Fields.Validation.Method"
+             ReadOnly="@Fields.IsReadOnly"
+             Required="@Fields.Validation.IsRequired"
+             RequiredError="@Fields.Validation.RequiredError"
+             Label="@Fields.Label" />
+
+
+@code 
+{
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private bool CurrentValue { get; set; }
+    [Parameter]
+    public required bool FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<bool> FormDataChanged { get; set; }
+
+    #endregion
+
+}

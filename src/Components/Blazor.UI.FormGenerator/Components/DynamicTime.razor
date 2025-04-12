@@ -1,0 +1,39 @@
+﻿<MudTextField @bind-Value="@FormData"
+              Placeholder="@Fields.Placeholder"
+              Validation="@Fields.Validation.Method"
+              Required="@Fields.Validation.IsRequired"
+              RequiredError="@Fields.Validation.RequiredError"
+              Label="@Fields.Label" ReadOnly="@Fields.IsReadOnly"
+              HelperText="@Fields.HelperText"
+              HelperTextOnFocus="@Fields.HelperTextOnFocus"
+              InputType="InputType.Time" />
+
+@code 
+{
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private DateTime CurrentValue { get; set; }
+    [Parameter]
+    public required DateTime FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<DateTime> FormDataChanged { get; set; }
+
+    #endregion
+
+}

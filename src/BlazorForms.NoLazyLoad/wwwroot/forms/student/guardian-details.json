@@ -51,7 +51,8 @@
         "IsReadOnly": false,
         "IsRequired": true,
         "DefaultValue": "",
-        "Variant": "Text",
+        "Variant": "Filled",
+        "Margin": "Dense",
         "GridPosition": {
           "xs": 12,
           "sm": 6,
@@ -66,22 +67,8 @@
         "IsReadOnly": false,
         "IsRequired": true,
         "DefaultValue": "",
-        "Variant": "Text",
-        "GridPosition": {
-          "xs": 12,
-          "sm": 6,
-          "md": 4,
-          "lg": 4
-        }
-      },      
-      {
-        "FieldName": "LastName",
-        "Label": "Last Name",
-        "InputType": "Text",
-        "IsReadOnly": false,
-        "IsRequired": true,
-        "DefaultValue": "",
-        "Variant": "Text",
+        "Variant": "Filled",
+        "Margin": "Dense",
         "GridPosition": {
           "xs": 12,
           "sm": 6,
@@ -89,7 +76,23 @@
           "lg": 4
         }
       },
-      
+      {
+        "FieldName": "LastName",
+        "Label": "Last Name",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+
       {
         "FieldName": "Education",
         "Label": "Education",
@@ -97,7 +100,8 @@
         "IsReadOnly": false,
         "IsRequired": true,
         "DefaultValue": "",
-        "Variant": "Text",
+        "Variant": "Filled",
+        "Margin": "Dense",
         "GridPosition": {
           "xs": 12,
           "sm": 6,
@@ -112,7 +116,8 @@
         "IsReadOnly": false,
         "IsRequired": true,
         "DefaultValue": "",
-        "Variant": "Text",
+        "Variant": "Filled",
+        "Margin": "Dense",
         "GridPosition": {
           "xs": 12,
           "sm": 6,
@@ -133,7 +138,8 @@
         "IsReadOnly": false,
         "IsRequired": true,
         "DefaultValue": "",
-        "Variant": "Text",
+        "Variant": "Filled",
+        "Margin": "Dense",
         "GridPosition": {
           "xs": 12,
           "sm": 6,

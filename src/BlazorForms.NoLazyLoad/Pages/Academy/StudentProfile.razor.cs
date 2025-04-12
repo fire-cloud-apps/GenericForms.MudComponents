@@ -70,7 +70,7 @@ public partial class StudentProfile : ComponentBase
     FormBuilder[] _formGuardianBuilders;
     private async Task GuardianDetails()
     {
-        _formGuardianBuilders = await Http.GetFromJsonAsync<FormBuilder[]>("forms/student/guardian-details.json");
+        _formGuardianBuilders = await Http.GetFromJsonAsync<FormBuilder[]>("forms/student/guardian-details.json?v="+ DateTime.Now.Ticks.ToString());
         //Contact Panel
         var contactPanel = _formGuardianBuilders.Where(card => card.Card == "Contacts").FirstOrDefault();
         if (contactPanel is not null)

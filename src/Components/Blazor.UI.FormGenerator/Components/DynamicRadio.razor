@@ -1,0 +1,43 @@
+﻿
+
+<MudText>@Fields.Label</MudText>
+<MudRadioGroup @bind-Value="@FormData"
+               Required="@Fields.Validation.IsRequired"
+               RequiredError="@Fields.Validation.RequiredError"
+               Validation="@Fields.Validation.Method"
+               ReadOnly="@Fields.IsReadOnly">
+    @foreach (var item in @Fields.SelectItemList)
+    {
+        <MudRadio Value="item.Value">@item.Text</MudRadio>
+        //Console.WriteLine($"Radio Value: {item.Value}, Text: {item.Text}");
+    }
+</MudRadioGroup>
+
+@code {
+
+    [Parameter]
+    public required Field? Fields { get; set; }
+
+    #region Binding Form Data As String
+
+    private string? CurrentValue { get; set; }
+    [Parameter]
+    public required string? FormData
+    {
+        get => CurrentValue;
+        set
+        {
+            if (CurrentValue != value)
+            {
+                CurrentValue = value;
+                FormDataChanged.InvokeAsync(CurrentValue);
+            }
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string?> FormDataChanged { get; set; }
+
+    #endregion
+
+}
