@@ -6,7 +6,53 @@ namespace Blazor.UI.FormGenerator;
 
 public partial class DynamicMudForm
 {
-    
+
+    #region Get Field
+    public static Field? GetField(FormBuilder[] formBuilders, string cardName, string fieldName)
+    {
+        Field? resultField = null;
+        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
+        if (detailPanel is not null)
+        {            
+            var field = detailPanel.Fields.FirstOrDefault(field => field.FieldName == fieldName);
+            if (field is not null)
+            {
+                 resultField = field;
+            }
+        }
+        return resultField;
+    }
+    #endregion
+
+    /// <summary>
+    /// Attach the validation event on the required field
+    /// </summary>
+    /// <param name="formBuilders">form builder array of items</param>
+    /// <param name="cardName">Name of the card</param>
+    /// <param name="fieldName">Name of the field</param>
+    /// <param name="validationMethod">Validation method</param>
+    /// <code>
+    /// e.g. new UrlAttribute() { ErrorMessage = "The URL is not valid" };
+    /// e.g. MaxCharacters(string ch)  { ... }
+    /// </code>
+    /// <returns></returns>
+    public static bool AttachTextChangeEvent(FormBuilder[] formBuilders, string cardName, string fieldName, Func<string, Task?> eventMethod)
+    {
+        bool result = false;
+        var detailPanel = formBuilders.FirstOrDefault(card => card.Card == cardName);
+        if (detailPanel is not null)
+        {
+            var field = detailPanel.Fields.FirstOrDefault(field => field.FieldName == fieldName);
+            if (field is not null)
+            {
+                field.TextChanged_Handler = eventMethod;
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    #region Validation Event Mapper
     /// <summary>
     /// Attach the validation event on the required field
     /// </summary>
@@ -34,6 +80,9 @@ public partial class DynamicMudForm
         }
         return result;
     }
+
+    #endregion
+
     public static bool AttachCard_EventAction(FormBuilder[] formBuilders, string cardName, 
         Func<Task?> cardAction)
     {

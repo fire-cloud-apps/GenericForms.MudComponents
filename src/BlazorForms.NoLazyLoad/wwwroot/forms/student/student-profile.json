@@ -31,6 +31,7 @@
         "Icon": "Material.Filled.AddCircle"
       }
     },
+
     "Footer": {
       "Enable": false,
       "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
@@ -39,7 +40,7 @@
       "CancelColor": "Secondary",
       "CancelVariant": "Text",
       "EnableSubmit": true,
-      "SubmitText": "Cancel",
+      "SubmitText": "Submit",
       "SubmitColor": "Primary",
       "SubmitVariant": "Filled"
     },

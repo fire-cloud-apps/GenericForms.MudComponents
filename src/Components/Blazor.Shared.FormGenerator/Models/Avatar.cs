@@ -13,4 +13,15 @@ public class Avatar
     public string Icon { get; set; }
     [JsonConverter(typeof(VariantTypeConverter))]
     public Variant Variant { get; set; }
+
+    [JsonConverter(typeof(AvatarTypeConverter))]
+    public AvatarType AvatarType { get; set; } = AvatarType.Icon;
+
+
+}
+
+public enum AvatarType
+{
+    Icon,
+    Image
 }

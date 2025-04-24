@@ -1,8 +1,7 @@
 ﻿<MudSelect T="string"
            @bind-Value="@FormData"
 
-           Label="@Fields.Label"
-           Variant="@Fields.Variant"
+           Label="@Fields.Label"           
            Placeholder="@Fields.Placeholder"
            Validation="@Fields.Validation.Method"
            HelperText="@Fields.HelperText"
@@ -12,8 +11,9 @@
            RequiredError="@Fields.Validation.RequiredError"
            MultiSelection="@Fields.MultiSelect"
            ReadOnly="@Fields.IsReadOnly"
-           
->
+
+           Variant="@Fields.Variant"
+           Margin="@Fields.Margin">
     @foreach (var item in @Fields.SelectItemList)
     {
         <MudSelectItem Value="item.Value">@item.Text</MudSelectItem>

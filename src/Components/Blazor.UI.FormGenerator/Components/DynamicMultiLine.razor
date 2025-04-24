@@ -16,9 +16,13 @@ It supports various properties such as validation, placeholder, adornments, and 
               Required="@Fields.Validation.IsRequired"
               RequiredError="@Fields.Validation.RequiredError"
               Validation="@Fields.Validation.Method"
+
               Lines="@Fields.Line" 
               Label="@Fields.Label" 
-              Variant="@Fields.Variant">
+              Variant="@Fields.Variant"
+              Margin="@Fields.Margin"
+
+              TextChanged="@(async (e) => await Fields.TextChanged_Handler(e))">
 
 </MudTextField>
 

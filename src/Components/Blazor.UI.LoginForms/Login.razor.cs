@@ -10,6 +10,9 @@ public partial class Login
     #region Parameters
     [Parameter]
     public AuthDetails Auth { get; set; } = new AuthDetails();
+
+    [Parameter]
+    public LoginUI LoginInfo { get; set; } = new LoginUI();
     /// <summary>
     /// Logo Alignment to position the logo
     /// </summary>
@@ -27,10 +30,10 @@ public partial class Login
     public string TextGradient { get; set; } = "gradient";
     [Parameter]
     public string ForgetPasswordLink { get; set; }
-    [Parameter]
-    public string RegisterLink { get; set; }
-    [Parameter]
-    public string LogoIcon { get; set; } = Icons.Custom.Brands.GitHub;
+    //[Parameter]
+    //public string RegisterLink { get; set; }
+    //[Parameter]
+    //public string LogoIcon { get; set; } = Icons.Custom.Brands.GitHub;
 
     #endregion 
 
@@ -57,6 +60,8 @@ public partial class Login
     #endregion
 
     #region SignIn Event Click
+    private bool _processing = false;
+    
 
     [Parameter]
     public EventCallback<AuthDetails> OnClick { get; set; }
@@ -69,7 +74,22 @@ public partial class Login
             return; // No method assigned, do nothing
         }
         Console.WriteLine("Component Login Invoked.");
+        _processing = true;        
         await OnClick.InvokeAsync(authDetails);
+        _processing = false;
     }
     #endregion
+}
+
+public class LoginUI
+{
+    public string Title { get; set; } = "Fire Cloud";
+
+    public string LoginIcon { get; set; } = Icons.Custom.Brands.GitHub;
+    public string SubTitle { get; set; } = "Sign In";
+
+    public string SiginMessage { get; set; } = "Don't have an Account?";
+    public string SignUpLink { get; set; } = "#";
+    public string ForgetPasswordMessage { get; set; } = "Forget Password?";
+    public string ForgetPasswordLink { get; set; } = "#";
 }

@@ -1,0 +1,59 @@
+﻿@page "/"
+@using System.Text.Json
+
+@attribute [Authorize]
+@* @attribute [Authorize(Roles = "admin")] *@
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code{
+
+	protected override async Task OnInitializedAsync()
+	{
+		var user1 = await LocalStorage.GetItemAsStringAsync("user_json");
+
+		// Deserialize the JSON string into the User class
+		var user = JsonSerializer.Deserialize<User>(user1);
+
+		if (user != null)
+		{
+			// Extract the required values
+			string id = user.id;
+			string email = user.email;
+			string name = user.user_metadata?.name;
+			string role = user.user_metadata?.role;
+			string info = user.user_metadata?.Info;
+
+			// Print the extracted values
+			Console.WriteLine($"ID: {id}");
+			Console.WriteLine($"Email: {email}");
+			Console.WriteLine($"Name: {name}");
+			Console.WriteLine($"Role: {role}");
+			Console.WriteLine($"Info: {info}");
+		}
+		else
+		{
+			Console.WriteLine("Failed to deserialize JSON.");
+		}
+
+		Console.WriteLine($"User 1: {user1}");
+	}
+	
+	public class UserMetadata
+	{
+		public string name { get; set; }
+		public string role { get; set; }
+		public string Info { get; set; }
+	}
+
+	public class User
+	{		
+		public string id { get; set; }
+		public string email { get; set; }
+		public UserMetadata user_metadata { get; set; }
+	}
+}

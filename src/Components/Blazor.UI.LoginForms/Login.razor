@@ -5,41 +5,56 @@ Class="d-flex align-center" Style="height: 100vh;">
     <div class="d-flex flex-column mud-width-full">
         <MudPaper Elevation="25" Class="pa-8" Width="100%" MaxWidth="500px">
 
-            @if (!string.IsNullOrEmpty(LogoIcon))
+            @if (!string.IsNullOrEmpty(LoginInfo.LoginIcon))
             {
                 <MudStack AlignItems="@LogoAlign" Row="true">
                     <MudText Class="@TextGradient"
-                             Typo="Typo.h3"> Fire Cloud </MudText>
+                             Typo="Typo.h3"> @LoginInfo.Title </MudText>
 
-                    <MudIcon Icon="@LogoIcon" Size="Size.Large"
+                    <MudIcon Icon="@LoginInfo.LoginIcon" Size="Size.Large"
                              Style="width:100px; height:100px;" />
                 </MudStack>
             }
 
-            <MudText Typo="Typo.h4" GutterBottom="true">Sign In</MudText>
+            <MudText Typo="Typo.h4" GutterBottom="true">@LoginInfo.SubTitle</MudText>
 
-            @if (!string.IsNullOrEmpty(RegisterLink))
+            @if (!string.IsNullOrEmpty(LoginInfo.SignUpLink))
             {
                 <MudText>
-                    Don't have an account?
-                    <MudLink Href="@RegisterLink">Sign Up</MudLink>
+                    @LoginInfo.SiginMessage
+                    <MudLink Href="@LoginInfo.SignUpLink">Sign Up</MudLink>
                 </MudText>
             }
-            <MudTextField T="string" Value="@Auth.Email" Label="E-mail" Variant="Variant.Outlined" Class="my-6"></MudTextField>
+            <MudTextField T="string" @bind-Value="@Auth.Email" Label="E-mail" 
+                Variant="Variant.Outlined" Class="my-6"></MudTextField>
 
             <MudTextField @bind-Value="@Auth.Password" Label="Password" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
 
             <div Class="d-flex justify-space-between align-center">
                 <MudCheckBox T="bool" Value="@Auth.Remember" Label="Remember me?" Color="Color.Primary" Class="ml-n1 my-3"></MudCheckBox>
-                @if (!string.IsNullOrEmpty(ForgetPasswordLink))
+                @if (!string.IsNullOrEmpty(LoginInfo.ForgetPasswordLink))
                 {
-                    <MudLink Href="@ForgetPasswordLink">Forgot pwd?</MudLink>
+                    <MudLink Href="@ForgetPasswordLink">@LoginInfo.ForgetPasswordLink</MudLink>
                 }
             </div>
 
             <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                       Disabled="@_processing"
                        OnClick="@((e)=> HandleClickAsync(e, Auth))"
-                       Size="Size.Large" FullWidth="true">Sign In</MudButton>
+                       Size="Size.Large" FullWidth="true">
+
+                @if (_processing)
+                {
+                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                    <MudText Class="ms-2">Processing</MudText>
+                }
+                else
+                {
+                    <MudText>Sign In</MudText>
+                }
+                   
+            </MudButton>
         </MudPaper>
     </div>
 </MudContainer>
+

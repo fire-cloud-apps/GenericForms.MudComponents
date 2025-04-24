@@ -1,0 +1,73 @@
+﻿@page "/auth/login"
+
+@layout EmptyLayout
+
+@using Blazor.UI.LoginForms
+@using Blazor.UI.LoginForms.Model
+
+@inject ISupabaseAuthService AuthService
+@inject CustomAuthStateProvider AuthStateProvider
+
+<Login LoginInfo="@_loginInfo"
+LogoAlign="AlignItems.End"
+TextGradient="gradient-text"
+ForgetPasswordLink="#"
+Auth="@_authDetails"
+OnClick="LoginInvoke">
+
+
+</Login>
+
+
+@code {
+    AuthDetails _authDetails;
+    LoginUI _loginInfo = new LoginUI()
+        {
+            SignUpLink = "/register",
+            LoginIcon = @Icons.Material.Rounded.Login
+        };
+
+    public async Task LoginInvoke(AuthDetails auth)
+    {
+        try
+        {
+            var sess = await AuthService.SignInAsync(auth.Email, auth.Password);
+            await AuthStateProvider.MarkUserAsAuthenticated(sess);
+
+            Console.WriteLine($"Parent Event Invoked: Email: {auth.Email} Password: {auth.Password}");
+            // AuthenticationStateProvider.LoginAsync(auth.Email, auth.Password);
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception ex)
+        {
+            // TODO: Display error message to user
+            Console.WriteLine($"Login failed: {ex.Message}");
+        }   
+    }
+
+    private async Task OnLogoutClicked()
+    {
+        var token = await LocalStorage.GetItemAsync<string>("access_token");
+        if (!string.IsNullOrEmpty(token))
+            await AuthService.SignOutAsync(token);
+        await AuthStateProvider.MarkUserAsLoggedOut();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authDetails = new Blazor.UI.LoginForms.Model.AuthDetails();
+        _authDetails.Email = "ganesh.supabase@email.com";
+        _authDetails.Password = "supabase.2025";
+
+        var state = await AuthStateProvider.GetAuthenticationStateAsync();
+        if (state.User != null)
+        {
+            var user = state.User;
+            if (user.Identity.IsAuthenticated)
+            {
+                Console.WriteLine(" User is authenticated, redirect to the home page");
+                NavigationManager.NavigateTo("/");
+            }
+        }
+    }
+}

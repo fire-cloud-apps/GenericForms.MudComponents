@@ -25,6 +25,7 @@ It supports various properties such as validation, placeholder, adornments, and 
         RequiredError="@Fields.Validation.RequiredError"
         Variant="@Fields.Variant"
         Margin="@Fields.Margin"
+              TextChanged="@(async (e) => await Fields.TextChanged_Handler(e))">
         
         >
 

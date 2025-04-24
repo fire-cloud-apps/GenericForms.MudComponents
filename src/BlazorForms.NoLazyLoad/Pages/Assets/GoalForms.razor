@@ -1,0 +1,9 @@
+﻿@page "/Forms/Assets"
+
+@inject HttpClient Http
+@inject ILogger<GoalForms> Logger
+
+@if (_formBuilders is not null)
+{
+    <DynamicMudForm @ref="_dynamicMudFrom" FormBuilders="_formBuilders" />
+}

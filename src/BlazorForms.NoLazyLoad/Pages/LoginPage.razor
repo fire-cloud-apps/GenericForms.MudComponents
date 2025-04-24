@@ -16,9 +16,8 @@
 }
 
 
-<Blazor.UI.LoginForms.Login RegisterLink="/register"
-                            LogoAlign="AlignItems.End"
-                            LogoIcon="@Icons.Material.Rounded.Login"
+<Blazor.UI.LoginForms.Login LoginInfo="@_loginInfo"
+                            LogoAlign="AlignItems.End"                            
                             TextGradient="gradient-text"
                             ForgetPasswordLink="#"
                             Auth="@_authDetails"
@@ -30,6 +29,11 @@
 
 @code{
     Blazor.UI.LoginForms.Model.AuthDetails _authDetails;
+    Blazor.UI.LoginForms.LoginUI _loginInfo = new LoginUI()
+    {
+            SignUpLink = "/register",
+            LoginIcon = @Icons.Material.Rounded.Login
+    };
 
     public void EventInvoke(Blazor.UI.LoginForms.Model.AuthDetails auth)
     {

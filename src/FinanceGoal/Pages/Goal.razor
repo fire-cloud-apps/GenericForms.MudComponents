@@ -1,0 +1,10 @@
+﻿@page "/Goal"
+
+@inject HttpClient Http
+@inject ILogger<Goal> Logger
+@inject IGoalHttpUtility GoalHttp
+
+@if (_formBuilders is not null)
+{
+    <DynamicMudForm @ref="_dynamicMudFrom" FormBuilders="_formBuilders" />
+}

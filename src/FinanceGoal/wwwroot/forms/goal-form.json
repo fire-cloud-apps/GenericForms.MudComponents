@@ -1,0 +1,246 @@
+[
+  {
+    "Card": "GoalDetails",
+    "Elevation": 0,
+    "Spacing": 2,
+    "Outlined": true,
+    "Class": "ma-4",
+    "GridPosition": {
+      "xs": 12,
+      "sm": 12,
+      "md": 12,
+      "lg": 12
+    },
+    "Header": {
+      "Enable": true,
+      "Divider": true,
+      "Avatar": {
+        "Enable": true,
+        "Color": "Primary",
+        "Icon": "img/goal-svg-repo.svg",
+        "Variant": "Text",
+        "AvatarType": "Image"
+      },
+      "Content": {
+        "Enable": true,
+        "Title": "Finance Goal",
+        "SubTitle": "Enter your life financial goal."
+      },
+      "CardAction": {
+        "Enable": false,
+        "Color": "Primary",
+        "Icon": "material-symbols-outlined/trophy",
+        "Variant": "Outlined"
+      }
+    },
+    "Footer": {
+      "Enable": true,
+      "CustomClass": "d-flex justify-end flex-grow-1 gap-2",
+      "EnableCancel": true,
+      "CancelText": "Cancel",
+      "CancelColor": "Secondary",
+      "CancelVariant": "Text",
+      "EnableSubmit": true,
+      "SubmitText": "Save",
+      "SubmitColor": "Primary",
+      "SubmitVariant": "Filled"
+    },
+
+    "Fields": [
+      {
+        "FieldName": "GoalName",
+        "Label": "Goal Name",
+        "InputType": "Text",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12
+        }
+      },
+
+      {
+        "FieldName": "ImageDisplay",
+        "Label": "Image SVG",
+        "InputType": "Image",
+        "Fluid": true,
+        "ImageSrc": "/img/palm-tree-svgrepo-com.svg",
+        "Width": 100,
+        "Height": 100,
+        "Alt": "No Profile Image",
+        "Class": "rounded-lg",
+        "IsReadOnly": true,
+        "IsRequired": true,
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "lg": 1,
+          "md": 1,
+          "sm": 1,
+          "xs": 1
+        }
+      },
+
+      {
+        "FieldName": "ImageSVG",
+        "Label": "Image in SVG",
+        "InputType": "MultiLine",
+        "IsReadOnly": false,
+        "IsRequired": false,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "Line": "4",
+        "GridPosition": {
+          "xs": 11,
+          "sm": 11,
+          "md": 11,
+          "lg": 11
+        }
+      },
+
+      {
+        "FieldName": "OwnedBy",
+        "Label": "Owned By",
+        "InputType": "Select",
+        "SelectItemList": [
+          {
+            "Text": "SR Ganesh Ram",
+            "Value": "SR Ganesh Ram"
+          },
+          {
+            "Text": "Alamelu",
+            "Value": "Alamelu"
+          },
+          {
+            "Text": "Pritish",
+            "Value": "Pritish"
+          },
+          {
+            "Text": "Jyoshmita",
+            "Value": "Jyoshmita"
+          }
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+
+      {
+        "FieldName": "InvestmentCategory",
+        "Label": "Investment Category",
+        "InputType": "Select",
+        "SelectItemList": [
+          {
+            "Text": "Mutual Fund",
+            "Value": "MF"
+          },
+          {
+            "Text": "Gold",
+            "Value": "Gold"
+          },
+          {
+            "Text": "Silver",
+            "Value": "Silver"
+          },
+          {
+            "Text": "Land",
+            "Value": "Land"
+          }
+        ],
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+
+      {
+        "FieldName": "TotalAmountInvested",
+        "Label": "Total Amount Invested",
+        "InputType": "Numeric",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+      {
+        "FieldName": "TargetAmount",
+        "Label": "Target Amount",
+        "InputType": "Numeric",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+
+      {
+        "FieldName": "StartedYear",
+        "Label": "Start Date",
+        "InputType": "Date",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      },
+
+      {
+        "FieldName": "TargetDate",
+        "Label": "Target Date",
+        "InputType": "Date",
+        "IsReadOnly": false,
+        "IsRequired": true,
+        "DefaultValue": "",
+        "Variant": "Filled",
+        "Margin": "Dense",
+        "GridPosition": {
+          "xs": 12,
+          "sm": 6,
+          "md": 4,
+          "lg": 4
+        }
+      }
+
+    ]
+  }
+]

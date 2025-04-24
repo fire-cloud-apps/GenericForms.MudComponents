@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Blazor.Shared.FormGenerator.Conversions;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 using Color = MudBlazor.Color;
@@ -209,6 +210,13 @@ public class Field
     [JsonConverter(typeof(UnderlineTypeConverter))]
     public Underline Underline { get; set; } = MudBlazor.Underline.Hover;
 
+    #endregion
+
+
+    #region Event Handler
+    [JsonIgnore]
+    public Func<string, Task?> TextChanged_Handler { get; set; } = async (e) => { Console.WriteLine("'Text Changed' Default action Triggered. "); };
+    
     #endregion
 
 

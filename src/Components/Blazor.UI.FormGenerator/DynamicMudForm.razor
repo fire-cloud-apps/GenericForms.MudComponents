@@ -29,10 +29,19 @@
                             <CardHeaderAvatar>
                                 @if (card.Header.Avatar.Enable)
                                 {
-                                    <MudAvatar Color="@card.Header.Avatar.Color"
-                                               Variant="@card.Header.Avatar.Variant">
-                                        <MudIcon Icon="@card.Header.Avatar.Icon"/>
-                                    </MudAvatar>
+                                        @if (card.Header.Avatar.AvatarType == AvatarType.Image)
+                                        {
+                                            <MudImage Src="@card.Header.Avatar.Icon" Height="45" Width="45" />
+                                        }
+                                        else
+                                        {
+                                            <MudAvatar Color="@card.Header.Avatar.Color"
+                                                       Variant="@card.Header.Avatar.Variant">                                                
+                                                    <MudIcon Icon="@card.Header.Avatar.Icon" />
+
+                                            </MudAvatar>
+                                        }
+                                    
                                 }
                             </CardHeaderAvatar>
 
@@ -91,6 +100,7 @@
                                                 <DynamicRadio 
                                                     Fields="@field" @bind-FormData="_formData[field.FieldName]" />
                                                 break;
+
                                             case InputFieldType.ChipSet:
                                                 <DynamicChip Fields="@field"
                                                              @bind-FormData="@_formData[field.FieldName]" />
@@ -121,6 +131,7 @@
                                             case InputFieldType.Password:
 												<DynamicPassword @bind-FormData="@_formData[field.FieldName]" Fields="@field" />                                                
                                                 break;
+
                                             case InputFieldType.CheckBox:
 												<DynamicCheckBox @bind-FormData="_formDataBool[field.FieldName]" Fields="@field" />
                                                 break;
@@ -135,6 +146,7 @@
                                                     <MudText Typo="@field.TextStyle">@field.Label</MudText>
                                                 </div>
                                                 break;
+
                                             case InputFieldType.Divider:
                                                 <MudDivider Class="ma-2"/>
                                                 break;
@@ -162,6 +174,7 @@
                                                     @field.Label
                                                 </MudLink>
                                                 break;   
+
                                             case InputFieldType.Image:
                                                 <MudImage Fluid="@field.Fluid"
                                                           Src="@field.ImageSrc" Width="@field.Width"
